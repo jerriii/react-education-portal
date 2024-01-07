@@ -4,7 +4,7 @@ import images from "../src/assets/img/index";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "../src/Pages/Home";
 import School from "./Pages/School";
-import Courses from "./components/Courses";
+import Courses from "./Pages/Courses";
 import { createContext, useState } from "react";
 import Footer from "./components/Footer";
 
