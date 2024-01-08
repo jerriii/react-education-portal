@@ -7,7 +7,11 @@ const Courses = () => {
   return (
     <>
       <CoursesHeroSection />
-      <Container customClassName={"bg-[#D9D9D9] flex flex-row lg:gap-6 py-5"}>
+      <Container
+        customClassName={
+          "bg-[#D9D9D9] flex flex-row lg:gap-6 py-5 justify-between"
+        }
+      >
         <CoursesFilter />
         <CoursesResults />
       </Container>
