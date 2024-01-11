@@ -7,6 +7,8 @@ import School from "./Pages/School";
 import Courses from "./Pages/Courses";
 import { createContext, useState } from "react";
 import Footer from "./components/Footer";
+import useUniqueDataFilter from "./CustomHooks/useUniqueDataFilter";
+import allCourses from "../src/components/DummyData.json";
 
 export const AllContext = createContext({
   Navbar: {},
@@ -329,152 +331,35 @@ function App() {
     },
   ];
 
-  const allCourses = [
-    {
-      id: 1,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      degree: "Bachelors",
-      affiliation: "Tribhuvan University",
-      duration: "48 months",
-      study_field: "Science",
-    },
-    {
-      id: 2,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      degree: "+2",
-      affiliation: "Purbanchal University",
-      duration: "48 months",
-      study_field: "Management",
-    },
-    {
-      id: 3,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      affiliation: "Kathmandu University",
-      duration: "48 months",
-      study_field: "Humanities",
-    },
-    {
-      id: 4,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      affiliation: "Pokhara University",
-      duration: "48 months",
-      study_field: "Engineering",
-    },
-    {
-      id: 5,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      degree: "Bachelors",
-      affiliation: "Tribhuvan University",
-      duration: "48 months",
-      study_field: "Science",
-    },
-    {
-      id: 6,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      degree: "+2",
-      affiliation: "Purbanchal University",
-      duration: "48 months",
-      study_field: "Management",
-    },
-    {
-      id: 7,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      affiliation: "Kathmandu University",
-      duration: "48 months",
-      study_field: "Humanities",
-    },
-    {
-      id: 8,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      affiliation: "Pokhara University",
-      duration: "48 months",
-      study_field: "Engineering",
-    },
-    {
-      id: 9,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      degree: "Bachelors",
-      affiliation: "Tribhuvan University",
-      duration: "48 months",
-      study_field: "Science",
-    },
-    {
-      id: 10,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      degree: "+2",
-      affiliation: "Purbanchal University",
-      duration: "48 months",
-      study_field: "Management",
-    },
-    {
-      id: 11,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      affiliation: "Kathmandu University",
-      duration: "48 months",
-      study_field: "Humanities",
-    },
-    {
-      id: 12,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      affiliation: "Pokhara University",
-      duration: "48 months",
-      study_field: "Engineering",
-    },
-    {
-      id: 13,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      degree: "Bachelors",
-      affiliation: "Tribhuvan University",
-      duration: "48 months",
-      study_field: "Science",
-    },
-    {
-      id: 14,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      degree: "+2",
-      affiliation: "Purbanchal University",
-      duration: "48 months",
-      study_field: "Management",
-    },
-    {
-      id: 15,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      affiliation: "Kathmandu University",
-      duration: "48 months",
-      study_field: "Humanities",
-    },
-    {
-      id: 16,
-      logo: images.tribhuvanuniversitylogo,
-      title: "Science and Information Technology",
-      affiliation: "Pokhara University",
-      duration: "48 months",
-      study_field: "Engineering",
-    },
-  ];
+  const [degreeData] = useUniqueDataFilter(allCourses.allCourses, "degree");
+
+  const [affiliationData] = useUniqueDataFilter(
+    allCourses.allCourses,
+    "affiliation"
+  );
+
+  const [studyFieldData] = useUniqueDataFilter(
+    allCourses.allCourses,
+    "study_field"
+  );
 
   const navMenu = Math.min(menuItems.length, 5);
   const dropDownMenu = Math.max(menuItems.length - navMenu, 0);
   const [isDropDown, setIsDropDown] = useState(false);
+  const [affiliationFilter, setAffiliationFilter] = useState([]);
+  const [degreeFilter, setDegreeFilter] = useState([]);
+  const [studyFieldFilter, setStudyFieldFilter] = useState([]);
 
   const handleDropDown = () => {
     setIsDropDown(!isDropDown);
   };
+
+  //   checked
+  //     ? setAffiliationFilter((filter) => [...filter, checkValue])
+  //     : setAffiliationFilter((filterContent) =>
+  //         filterContent.filter((e) => e !== checkValue)
+  //       );
+  // };
 
   return (
     <AllContext.Provider
@@ -498,7 +383,15 @@ function App() {
         Courses: {
           images,
           courseFilters,
-          allCourses,
+          affiliationData,
+          degreeData,
+          studyFieldData,
+          affiliationFilter,
+          setAffiliationFilter,
+          degreeFilter,
+          setDegreeFilter,
+          studyFieldFilter,
+          setStudyFieldFilter,
         },
         Footer: {
           socialLinks,

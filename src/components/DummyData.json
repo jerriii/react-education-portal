@@ -1,0 +1,947 @@
+{
+  "allCourses": [
+    {
+      "id": 1,
+      "logo": "http://dummyimage.com/102x100.png/cc0000/ffffff",
+      "title": "Computer Science",
+      "degree": "+2",
+      "affiliation": "School of Engineering",
+      "duration": "60 months",
+      "study_field": "art"
+    },
+    {
+      "id": 2,
+      "logo": "http://dummyimage.com/115x100.png/ff4444/ffffff",
+      "title": "Cybersecurity",
+      "degree": "+2",
+      "affiliation": "School of Arts",
+      "duration": "48 months",
+      "study_field": "music"
+    },
+    {
+      "id": 3,
+      "logo": "http://dummyimage.com/105x100.png/5fa2dd/ffffff",
+      "title": "Computer Science",
+      "degree": "+2",
+      "affiliation": "School of Education",
+      "duration": "36 months",
+      "study_field": "art"
+    },
+    {
+      "id": 4,
+      "logo": "http://dummyimage.com/224x100.png/cc0000/ffffff",
+      "title": "Data Science",
+      "degree": "+2",
+      "affiliation": "School of Arts",
+      "duration": "36 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 5,
+      "logo": "http://dummyimage.com/158x100.png/ff4444/ffffff",
+      "title": "Cybersecurity",
+      "degree": "+2",
+      "affiliation": "School of Management",
+      "duration": "24 months",
+      "study_field": "music"
+    },
+    {
+      "id": 6,
+      "logo": "http://dummyimage.com/183x100.png/cc0000/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "48 months",
+      "study_field": "music"
+    },
+    {
+      "id": 7,
+      "logo": "http://dummyimage.com/117x100.png/5fa2dd/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "+2",
+      "affiliation": "School of Management",
+      "duration": "36 months",
+      "study_field": "art"
+    },
+    {
+      "id": 8,
+      "logo": "http://dummyimage.com/135x100.png/cc0000/ffffff",
+      "title": "Computer Science",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "36 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 9,
+      "logo": "http://dummyimage.com/170x100.png/ff4444/ffffff",
+      "title": "Data Science",
+      "degree": "Masters",
+      "affiliation": "School of Management",
+      "duration": "60 months",
+      "study_field": "art"
+    },
+    {
+      "id": 10,
+      "logo": "http://dummyimage.com/165x100.png/5fa2dd/ffffff",
+      "title": "Cybersecurity",
+      "degree": "+2",
+      "affiliation": "School of Engineering",
+      "duration": "60 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 11,
+      "logo": "http://dummyimage.com/168x100.png/ff4444/ffffff",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Management",
+      "duration": "36 months",
+      "study_field": "history"
+    },
+    {
+      "id": 12,
+      "logo": "http://dummyimage.com/105x100.png/5fa2dd/ffffff",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Engineering",
+      "duration": "60 months",
+      "study_field": "music"
+    },
+    {
+      "id": 13,
+      "logo": "http://dummyimage.com/129x100.png/dddddd/000000",
+      "title": "Computer Science",
+      "degree": "+2",
+      "affiliation": "School of Management",
+      "duration": "36 months",
+      "study_field": "history"
+    },
+    {
+      "id": 14,
+      "logo": "http://dummyimage.com/127x100.png/cc0000/ffffff",
+      "title": "Data Science",
+      "degree": "+2",
+      "affiliation": "School of Engineering",
+      "duration": "24 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 15,
+      "logo": "http://dummyimage.com/166x100.png/ff4444/ffffff",
+      "title": "Data Science",
+      "degree": "Masters",
+      "affiliation": "School of Management",
+      "duration": "48 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 16,
+      "logo": "http://dummyimage.com/113x100.png/ff4444/ffffff",
+      "title": "Computer Science",
+      "degree": "Masters",
+      "affiliation": "School of Medical Sciences",
+      "duration": "12 months",
+      "study_field": "music"
+    },
+    {
+      "id": 17,
+      "logo": "http://dummyimage.com/190x100.png/ff4444/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "Masters",
+      "affiliation": "School of Engineering",
+      "duration": "12 months",
+      "study_field": "art"
+    },
+    {
+      "id": 18,
+      "logo": "http://dummyimage.com/123x100.png/ff4444/ffffff",
+      "title": "Data Science",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "12 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 19,
+      "logo": "http://dummyimage.com/169x100.png/5fa2dd/ffffff",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Education",
+      "duration": "60 months",
+      "study_field": "music"
+    },
+    {
+      "id": 20,
+      "logo": "http://dummyimage.com/199x100.png/5fa2dd/ffffff",
+      "title": "Cybersecurity",
+      "degree": "Masters",
+      "affiliation": "School of Management",
+      "duration": "60 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 21,
+      "logo": "http://dummyimage.com/200x100.png/cc0000/ffffff",
+      "title": "Information Technology",
+      "degree": "Masters",
+      "affiliation": "School of Engineering",
+      "duration": "48 months",
+      "study_field": "history"
+    },
+    {
+      "id": 22,
+      "logo": "http://dummyimage.com/243x100.png/cc0000/ffffff",
+      "title": "Cybersecurity",
+      "degree": "Masters",
+      "affiliation": "School of Education",
+      "duration": "36 months",
+      "study_field": "music"
+    },
+    {
+      "id": 23,
+      "logo": "http://dummyimage.com/150x100.png/dddddd/000000",
+      "title": "Data Science",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "12 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 24,
+      "logo": "http://dummyimage.com/230x100.png/5fa2dd/ffffff",
+      "title": "Computer Science",
+      "degree": "Masters",
+      "affiliation": "School of Medical Sciences",
+      "duration": "12 months",
+      "study_field": "music"
+    },
+    {
+      "id": 25,
+      "logo": "http://dummyimage.com/153x100.png/dddddd/000000",
+      "title": "Data Science",
+      "degree": "+2",
+      "affiliation": "School of Arts",
+      "duration": "60 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 26,
+      "logo": "http://dummyimage.com/212x100.png/ff4444/ffffff",
+      "title": "Cybersecurity",
+      "degree": "+2",
+      "affiliation": "School of Arts",
+      "duration": "36 months",
+      "study_field": "music"
+    },
+    {
+      "id": 27,
+      "logo": "http://dummyimage.com/114x100.png/cc0000/ffffff",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Engineering",
+      "duration": "36 months",
+      "study_field": "art"
+    },
+    {
+      "id": 28,
+      "logo": "http://dummyimage.com/223x100.png/dddddd/000000",
+      "title": "Artificial Intelligence",
+      "degree": "+2",
+      "affiliation": "School of Arts",
+      "duration": "36 months",
+      "study_field": "history"
+    },
+    {
+      "id": 29,
+      "logo": "http://dummyimage.com/143x100.png/5fa2dd/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "Masters",
+      "affiliation": "School of Education",
+      "duration": "12 months",
+      "study_field": "history"
+    },
+    {
+      "id": 30,
+      "logo": "http://dummyimage.com/250x100.png/cc0000/ffffff",
+      "title": "Cybersecurity",
+      "degree": "Masters",
+      "affiliation": "School of Medical Sciences",
+      "duration": "60 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 31,
+      "logo": "http://dummyimage.com/247x100.png/cc0000/ffffff",
+      "title": "Cybersecurity",
+      "degree": "Masters",
+      "affiliation": "School of Education",
+      "duration": "48 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 32,
+      "logo": "http://dummyimage.com/171x100.png/cc0000/ffffff",
+      "title": "Information Technology",
+      "degree": "Masters",
+      "affiliation": "School of Arts",
+      "duration": "12 months",
+      "study_field": "art"
+    },
+    {
+      "id": 33,
+      "logo": "http://dummyimage.com/174x100.png/5fa2dd/ffffff",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Arts",
+      "duration": "24 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 34,
+      "logo": "http://dummyimage.com/130x100.png/ff4444/ffffff",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Management",
+      "duration": "36 months",
+      "study_field": "music"
+    },
+    {
+      "id": 35,
+      "logo": "http://dummyimage.com/236x100.png/cc0000/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "+2",
+      "affiliation": "School of Arts",
+      "duration": "60 months",
+      "study_field": "art"
+    },
+    {
+      "id": 36,
+      "logo": "http://dummyimage.com/197x100.png/cc0000/ffffff",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "12 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 37,
+      "logo": "http://dummyimage.com/182x100.png/cc0000/ffffff",
+      "title": "Computer Science",
+      "degree": "+2",
+      "affiliation": "School of Engineering",
+      "duration": "12 months",
+      "study_field": "music"
+    },
+    {
+      "id": 38,
+      "logo": "http://dummyimage.com/223x100.png/5fa2dd/ffffff",
+      "title": "Information Technology",
+      "degree": "Masters",
+      "affiliation": "School of Medical Sciences",
+      "duration": "60 months",
+      "study_field": "art"
+    },
+    {
+      "id": 39,
+      "logo": "http://dummyimage.com/175x100.png/5fa2dd/ffffff",
+      "title": "Cybersecurity",
+      "degree": "Masters",
+      "affiliation": "School of Education",
+      "duration": "48 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 40,
+      "logo": "http://dummyimage.com/192x100.png/dddddd/000000",
+      "title": "Cybersecurity",
+      "degree": "+2",
+      "affiliation": "School of Arts",
+      "duration": "36 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 41,
+      "logo": "http://dummyimage.com/232x100.png/dddddd/000000",
+      "title": "Information Technology",
+      "degree": "Masters",
+      "affiliation": "School of Arts",
+      "duration": "36 months",
+      "study_field": "art"
+    },
+    {
+      "id": 42,
+      "logo": "http://dummyimage.com/103x100.png/cc0000/ffffff",
+      "title": "Information Technology",
+      "degree": "Masters",
+      "affiliation": "School of Management",
+      "duration": "60 months",
+      "study_field": "history"
+    },
+    {
+      "id": 43,
+      "logo": "http://dummyimage.com/143x100.png/5fa2dd/ffffff",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Engineering",
+      "duration": "24 months",
+      "study_field": "music"
+    },
+    {
+      "id": 44,
+      "logo": "http://dummyimage.com/200x100.png/cc0000/ffffff",
+      "title": "Cybersecurity",
+      "degree": "Masters",
+      "affiliation": "School of Management",
+      "duration": "36 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 45,
+      "logo": "http://dummyimage.com/158x100.png/5fa2dd/ffffff",
+      "title": "Computer Science",
+      "degree": "+2",
+      "affiliation": "School of Arts",
+      "duration": "48 months",
+      "study_field": "history"
+    },
+    {
+      "id": 46,
+      "logo": "http://dummyimage.com/118x100.png/cc0000/ffffff",
+      "title": "Computer Science",
+      "degree": "+2",
+      "affiliation": "School of Management",
+      "duration": "48 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 47,
+      "logo": "http://dummyimage.com/109x100.png/ff4444/ffffff",
+      "title": "Information Technology",
+      "degree": "Masters",
+      "affiliation": "School of Education",
+      "duration": "60 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 48,
+      "logo": "http://dummyimage.com/221x100.png/cc0000/ffffff",
+      "title": "Cybersecurity",
+      "degree": "Masters",
+      "affiliation": "School of Engineering",
+      "duration": "48 months",
+      "study_field": "music"
+    },
+    {
+      "id": 49,
+      "logo": "http://dummyimage.com/185x100.png/cc0000/ffffff",
+      "title": "Data Science",
+      "degree": "Masters",
+      "affiliation": "School of Management",
+      "duration": "48 months",
+      "study_field": "art"
+    },
+    {
+      "id": 50,
+      "logo": "http://dummyimage.com/141x100.png/ff4444/ffffff",
+      "title": "Data Science",
+      "degree": "+2",
+      "affiliation": "School of Management",
+      "duration": "36 months",
+      "study_field": "music"
+    },
+    {
+      "id": 51,
+      "logo": "http://dummyimage.com/201x100.png/ff4444/ffffff",
+      "title": "Computer Science",
+      "degree": "+2",
+      "affiliation": "School of Management",
+      "duration": "48 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 52,
+      "logo": "http://dummyimage.com/189x100.png/cc0000/ffffff",
+      "title": "Data Science",
+      "degree": "+2",
+      "affiliation": "School of Engineering",
+      "duration": "24 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 53,
+      "logo": "http://dummyimage.com/158x100.png/5fa2dd/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "Masters",
+      "affiliation": "School of Engineering",
+      "duration": "60 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 54,
+      "logo": "http://dummyimage.com/110x100.png/ff4444/ffffff",
+      "title": "Cybersecurity",
+      "degree": "Masters",
+      "affiliation": "School of Engineering",
+      "duration": "60 months",
+      "study_field": "history"
+    },
+    {
+      "id": 55,
+      "logo": "http://dummyimage.com/160x100.png/5fa2dd/ffffff",
+      "title": "Computer Science",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "24 months",
+      "study_field": "history"
+    },
+    {
+      "id": 56,
+      "logo": "http://dummyimage.com/236x100.png/cc0000/ffffff",
+      "title": "Data Science",
+      "degree": "Masters",
+      "affiliation": "School of Medical Sciences",
+      "duration": "12 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 57,
+      "logo": "http://dummyimage.com/211x100.png/cc0000/ffffff",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Education",
+      "duration": "48 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 58,
+      "logo": "http://dummyimage.com/241x100.png/dddddd/000000",
+      "title": "Computer Science",
+      "degree": "+2",
+      "affiliation": "School of Engineering",
+      "duration": "48 months",
+      "study_field": "art"
+    },
+    {
+      "id": 59,
+      "logo": "http://dummyimage.com/171x100.png/5fa2dd/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "36 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 60,
+      "logo": "http://dummyimage.com/122x100.png/cc0000/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "Masters",
+      "affiliation": "School of Management",
+      "duration": "48 months",
+      "study_field": "history"
+    },
+    {
+      "id": 61,
+      "logo": "http://dummyimage.com/232x100.png/ff4444/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "Masters",
+      "affiliation": "School of Education",
+      "duration": "36 months",
+      "study_field": "art"
+    },
+    {
+      "id": 62,
+      "logo": "http://dummyimage.com/162x100.png/dddddd/000000",
+      "title": "Data Science",
+      "degree": "Masters",
+      "affiliation": "School of Medical Sciences",
+      "duration": "24 months",
+      "study_field": "music"
+    },
+    {
+      "id": 63,
+      "logo": "http://dummyimage.com/133x100.png/5fa2dd/ffffff",
+      "title": "Computer Science",
+      "degree": "Masters",
+      "affiliation": "School of Medical Sciences",
+      "duration": "48 months",
+      "study_field": "history"
+    },
+    {
+      "id": 64,
+      "logo": "http://dummyimage.com/114x100.png/cc0000/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "Masters",
+      "affiliation": "School of Arts",
+      "duration": "24 months",
+      "study_field": "history"
+    },
+    {
+      "id": 65,
+      "logo": "http://dummyimage.com/246x100.png/ff4444/ffffff",
+      "title": "Data Science",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "36 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 66,
+      "logo": "http://dummyimage.com/245x100.png/5fa2dd/ffffff",
+      "title": "Data Science",
+      "degree": "Masters",
+      "affiliation": "School of Education",
+      "duration": "12 months",
+      "study_field": "history"
+    },
+    {
+      "id": 67,
+      "logo": "http://dummyimage.com/118x100.png/cc0000/ffffff",
+      "title": "Information Technology",
+      "degree": "Masters",
+      "affiliation": "School of Arts",
+      "duration": "36 months",
+      "study_field": "art"
+    },
+    {
+      "id": 68,
+      "logo": "http://dummyimage.com/157x100.png/5fa2dd/ffffff",
+      "title": "Cybersecurity",
+      "degree": "Masters",
+      "affiliation": "School of Management",
+      "duration": "24 months",
+      "study_field": "art"
+    },
+    {
+      "id": 69,
+      "logo": "http://dummyimage.com/195x100.png/dddddd/000000",
+      "title": "Cybersecurity",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "36 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 70,
+      "logo": "http://dummyimage.com/182x100.png/5fa2dd/ffffff",
+      "title": "Data Science",
+      "degree": "Masters",
+      "affiliation": "School of Arts",
+      "duration": "60 months",
+      "study_field": "art"
+    },
+    {
+      "id": 71,
+      "logo": "http://dummyimage.com/215x100.png/5fa2dd/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "+2",
+      "affiliation": "School of Arts",
+      "duration": "12 months",
+      "study_field": "history"
+    },
+    {
+      "id": 72,
+      "logo": "http://dummyimage.com/182x100.png/cc0000/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "+2",
+      "affiliation": "School of Engineering",
+      "duration": "12 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 73,
+      "logo": "http://dummyimage.com/178x100.png/ff4444/ffffff",
+      "title": "Computer Science",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "12 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 74,
+      "logo": "http://dummyimage.com/140x100.png/5fa2dd/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "Masters",
+      "affiliation": "School of Arts",
+      "duration": "60 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 75,
+      "logo": "http://dummyimage.com/202x100.png/cc0000/ffffff",
+      "title": "Cybersecurity",
+      "degree": "Masters",
+      "affiliation": "School of Engineering",
+      "duration": "60 months",
+      "study_field": "history"
+    },
+    {
+      "id": 76,
+      "logo": "http://dummyimage.com/141x100.png/ff4444/ffffff",
+      "title": "Cybersecurity",
+      "degree": "Masters",
+      "affiliation": "School of Arts",
+      "duration": "36 months",
+      "study_field": "art"
+    },
+    {
+      "id": 77,
+      "logo": "http://dummyimage.com/135x100.png/cc0000/ffffff",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "60 months",
+      "study_field": "art"
+    },
+    {
+      "id": 78,
+      "logo": "http://dummyimage.com/223x100.png/dddddd/000000",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Engineering",
+      "duration": "24 months",
+      "study_field": "art"
+    },
+    {
+      "id": 79,
+      "logo": "http://dummyimage.com/101x100.png/ff4444/ffffff",
+      "title": "Data Science",
+      "degree": "Masters",
+      "affiliation": "School of Arts",
+      "duration": "12 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 80,
+      "logo": "http://dummyimage.com/206x100.png/5fa2dd/ffffff",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Arts",
+      "duration": "36 months",
+      "study_field": "history"
+    },
+    {
+      "id": 81,
+      "logo": "http://dummyimage.com/243x100.png/ff4444/ffffff",
+      "title": "Cybersecurity",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "36 months",
+      "study_field": "music"
+    },
+    {
+      "id": 82,
+      "logo": "http://dummyimage.com/102x100.png/ff4444/ffffff",
+      "title": "Computer Science",
+      "degree": "Masters",
+      "affiliation": "School of Management",
+      "duration": "12 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 83,
+      "logo": "http://dummyimage.com/192x100.png/cc0000/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "48 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 84,
+      "logo": "http://dummyimage.com/148x100.png/5fa2dd/ffffff",
+      "title": "Computer Science",
+      "degree": "Masters",
+      "affiliation": "School of Education",
+      "duration": "60 months",
+      "study_field": "history"
+    },
+    {
+      "id": 85,
+      "logo": "http://dummyimage.com/225x100.png/ff4444/ffffff",
+      "title": "Information Technology",
+      "degree": "Masters",
+      "affiliation": "School of Education",
+      "duration": "36 months",
+      "study_field": "history"
+    },
+    {
+      "id": 86,
+      "logo": "http://dummyimage.com/241x100.png/cc0000/ffffff",
+      "title": "Data Science",
+      "degree": "+2",
+      "affiliation": "School of Education",
+      "duration": "48 months",
+      "study_field": "art"
+    },
+    {
+      "id": 87,
+      "logo": "http://dummyimage.com/147x100.png/ff4444/ffffff",
+      "title": "Data Science",
+      "degree": "+2",
+      "affiliation": "School of Education",
+      "duration": "60 months",
+      "study_field": "art"
+    },
+    {
+      "id": 88,
+      "logo": "http://dummyimage.com/111x100.png/ff4444/ffffff",
+      "title": "Data Science",
+      "degree": "+2",
+      "affiliation": "School of Engineering",
+      "duration": "36 months",
+      "study_field": "art"
+    },
+    {
+      "id": 89,
+      "logo": "http://dummyimage.com/189x100.png/5fa2dd/ffffff",
+      "title": "Data Science",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "24 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 90,
+      "logo": "http://dummyimage.com/165x100.png/cc0000/ffffff",
+      "title": "Data Science",
+      "degree": "Masters",
+      "affiliation": "School of Arts",
+      "duration": "60 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 91,
+      "logo": "http://dummyimage.com/135x100.png/ff4444/ffffff",
+      "title": "Computer Science",
+      "degree": "Masters",
+      "affiliation": "School of Engineering",
+      "duration": "60 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 92,
+      "logo": "http://dummyimage.com/128x100.png/cc0000/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "+2",
+      "affiliation": "School of Arts",
+      "duration": "24 months",
+      "study_field": "history"
+    },
+    {
+      "id": 93,
+      "logo": "http://dummyimage.com/134x100.png/cc0000/ffffff",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Education",
+      "duration": "24 months",
+      "study_field": "art"
+    },
+    {
+      "id": 94,
+      "logo": "http://dummyimage.com/173x100.png/ff4444/ffffff",
+      "title": "Data Science",
+      "degree": "Masters",
+      "affiliation": "School of Education",
+      "duration": "48 months",
+      "study_field": "literature"
+    },
+    {
+      "id": 95,
+      "logo": "http://dummyimage.com/142x100.png/5fa2dd/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "48 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 96,
+      "logo": "http://dummyimage.com/174x100.png/ff4444/ffffff",
+      "title": "Artificial Intelligence",
+      "degree": "+2",
+      "affiliation": "School of Medical Sciences",
+      "duration": "48 months",
+      "study_field": "history"
+    },
+    {
+      "id": 97,
+      "logo": "http://dummyimage.com/146x100.png/ff4444/ffffff",
+      "title": "Computer Science",
+      "degree": "Masters",
+      "affiliation": "School of Engineering",
+      "duration": "48 months",
+      "study_field": "art"
+    },
+    {
+      "id": 98,
+      "logo": "http://dummyimage.com/229x100.png/dddddd/000000",
+      "title": "Information Technology",
+      "degree": "Masters",
+      "affiliation": "School of Medical Sciences",
+      "duration": "24 months",
+      "study_field": "art"
+    },
+    {
+      "id": 99,
+      "logo": "http://dummyimage.com/182x100.png/cc0000/ffffff",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Management",
+      "duration": "60 months",
+      "study_field": "philosophy"
+    },
+    {
+      "id": 100,
+      "logo": "http://dummyimage.com/191x100.png/cc0000/ffffff",
+      "title": "Information Technology",
+      "degree": "+2",
+      "affiliation": "School of Arts",
+      "duration": "24 months",
+      "study_field": "philosophy"
+    }
+  ],
+
+  "menuItems": [
+    {
+      "name": "Home",
+      "href": "/",
+      "path": ""
+    },
+    {
+      "name": "Vacancies",
+      "href": "/vacancies",
+      "path": "vacancies"
+    },
+    {
+      "name": "Colleges",
+      "href": "/colleges",
+      "path": "colleges"
+    },
+    {
+      "name": "School",
+      "href": "/school",
+      "path": "school"
+    },
+    {
+      "name": "Courses",
+      "href": "/courses",
+      "path": "courses"
+    },
+    {
+      "name": "Link 1",
+      "href": "/link1",
+      "path": "link1"
+    },
+    {
+      "name": "Link 2",
+      "href": "/link2",
+      "path": "link2"
+    },
+    {
+      "name": "Link 3",
+      "href": "/link3",
+      "path": "link3"
+    }
+  ]
+}

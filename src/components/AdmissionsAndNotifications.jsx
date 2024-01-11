@@ -2,11 +2,14 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AllContext } from "../App";
 import Span from "./Span";
+import useDynamicDisplay from "../CustomHooks/useDynamicDisplay";
 
 const AdmissionsAndNotifications = () => {
   const { Home } = useContext(AllContext);
   const featuredItems = Home.featuredItems;
   const [viewMore, setViewMore] = useState(false);
+
+  const [itemsToShow] = useDynamicDisplay(3, 3, 3, 5, 5);
 
   // const navigate = useNavigate();
   const handleViewMore = () => {
@@ -14,9 +17,7 @@ const AdmissionsAndNotifications = () => {
   };
 
   let totalFeaturedItems = featuredItems.length;
-  let itemsToShow;
 
-  window.innerWidth <= 1024 ? (itemsToShow = 3) : (itemsToShow = 5);
   return (
     <div className="admissions-and-notifications py-8 flex flex-col lg:flex-row flex-nowrap gap-2 max-h-full xl:justify-between">
       <div className="featured-admission flex flex-col w-full xl:w-fit 2xl:w-auto items-center gap-4 lg:gap-2 flex-wrap">
@@ -76,9 +77,9 @@ const AdmissionsAndNotifications = () => {
           </Span>
         )}
       </div>
-      <div className="latest-notification max-h-[60vh] overflow-x-auto hidden lg:block lg:w-fit">
+      <div className="latest-notification max-h-auto overflow-x-auto hidden lg:block lg:w-fit">
         <p>Latest Notification</p>
-        <div className="max-h-[90%] overflow-x-auto relative custom-scrollbar">
+        <div className="max-h-96 overflow-x-auto relative custom-scrollbar">
           {featuredItems.map((items, index) => (
             <div
               className="flex flex-row items-center gap-4 p-4 border border-solid bg-[#BDBEEB] my-2 rounded-md"

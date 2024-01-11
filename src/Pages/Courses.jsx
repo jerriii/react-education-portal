@@ -1,7 +1,7 @@
-import Container from "../components/Container";
-import CoursesFilter from "../components/CoursesFilter";
 import CoursesHeroSection from "../components/CoursesHeroSection";
 import CoursesResults from "../components/CoursesResults";
+import CoursesFilter from "../components/CoursesFilter";
+import Container from "../components/Container";
 
 const Courses = () => {
   return (
