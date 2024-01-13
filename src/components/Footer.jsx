@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Button from "./Button";
+import Button from "../utils/Button";
 import { useContext } from "react";
 import { AllContext } from "../App";
 

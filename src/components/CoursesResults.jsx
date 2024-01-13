@@ -1,27 +1,87 @@
-import { useContext, useState, Fragment, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AllContext } from "../App";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import allCourses from "./DummyData.json";
 import images from "../assets/img/index";
-import { courseTypeFilter } from "../utils/Utils";
+import {
+  capitalizeFirstLetter,
+  courseTypeFilter,
+  handleFilter,
+} from "../utils/Utils";
 import useDynamicDisplay from "../CustomHooks/useDynamicDisplay";
+import usePagination from "../CustomHooks/usePagination";
 
 const CoursesResults = () => {
   const { Courses } = useContext(AllContext);
-  const courseFilters = Courses.courseFilters;
-  const handleFilter = Courses.handleFilter;
-  const { affiliationFilter, degreeFilter, studyFieldFilter } = Courses;
+  const {
+    affiliationFilter,
+    degreeFilter,
+    studyFieldFilter,
+    setAffiliationFilter,
+    setDegreeFilter,
+    setStudyFieldFilter,
+  } = Courses;
   const [filterIsOpen, setFilterIsOpen] = useState(false);
-  const [contentIsOpen, setContentIsOpen] = useState({});
+  const [affiliationIsOpen, setAffiliationIsOpen] = useState(false);
+  const [degreeIsOpen, setDegreeIsOpen] = useState(false);
+  const [studyFieldIsOpen, setStudyFieldIsOpen] = useState(false);
   const [filteredCourses, setFilteredCourses] = useState(allCourses.allCourses);
-  const [totalContentShown] = useDynamicDisplay(3, 6, 6, 9, 12);
+  const [totalContentShown] = useDynamicDisplay({
+    desktopsm: 6,
+    desktopmd: 9,
+    other: 12,
+  });
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const prevButton = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+    >
+      <path
+        d="M16 8L17.43 9.393L11.85 15H24V17H11.85L17.43 22.573L16 24L8 16L16 8Z"
+        fill="black"
+      />
+      <path
+        d="M16 30C13.2311 30 10.5243 29.1789 8.22202 27.6406C5.91973 26.1022 4.12532 23.9157 3.06569 21.3576C2.00607 18.7994 1.72882 15.9845 2.26901 13.2687C2.80921 10.553 4.14258 8.05845 6.10051 6.10051C8.05845 4.14258 10.553 2.80921 13.2687 2.26901C15.9845 1.72882 18.7994 2.00607 21.3576 3.06569C23.9157 4.12532 26.1022 5.91973 27.6406 8.22202C29.1789 10.5243 30 13.2311 30 16C29.9958 19.7117 28.5194 23.2702 25.8948 25.8948C23.2702 28.5194 19.7117 29.9958 16 30ZM16 4.00001C13.6266 4.00001 11.3066 4.70379 9.33316 6.02237C7.35977 7.34095 5.8217 9.21509 4.91345 11.4078C4.0052 13.6005 3.76756 16.0133 4.23058 18.3411C4.69361 20.6689 5.83649 22.8071 7.51472 24.4853C9.19296 26.1635 11.3312 27.3064 13.6589 27.7694C15.9867 28.2325 18.3995 27.9948 20.5922 27.0866C22.7849 26.1783 24.6591 24.6402 25.9776 22.6668C27.2962 20.6935 28 18.3734 28 16C27.9963 12.8185 26.7308 9.76845 24.4812 7.51882C22.2316 5.26918 19.1815 4.00371 16 4.00001Z"
+        fill="black"
+      />
+    </svg>
+  );
+  const nextButton = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+    >
+      <path
+        d="M16 8L14.57 9.393L20.15 15H8V17H20.15L14.57 22.573L16 24L24 16L16 8Z"
+        fill="black"
+      />
+      <path
+        d="M16 30C13.2311 30 10.5243 29.1789 8.22202 27.6406C5.91973 26.1022 4.12532 23.9157 3.06569 21.3576C2.00607 18.7994 1.72882 15.9845 2.26901 13.2687C2.80921 10.553 4.14258 8.05845 6.10051 6.10051C8.05845 4.14258 10.553 2.80921 13.2687 2.26901C15.9845 1.72882 18.7994 2.00607 21.3576 3.06569C23.9157 4.12532 26.1022 5.91973 27.6406 8.22202C29.1789 10.5243 30 13.2311 30 16C29.9958 19.7117 28.5194 23.2702 25.8948 25.8948C23.2702 28.5194 19.7117 29.9958 16 30ZM16 4.00001C13.6266 4.00001 11.3066 4.70379 9.33316 6.02237C7.35977 7.34095 5.8217 9.21509 4.91345 11.4078C4.0052 13.6005 3.76756 16.0133 4.23058 18.3411C4.69361 20.6689 5.83649 22.8071 7.51472 24.4853C9.19296 26.1635 11.3312 27.3064 13.6589 27.7694C15.9867 28.2325 18.3995 27.9948 20.5922 27.0866C22.7849 26.1783 24.6591 24.6402 25.9776 22.6668C27.2962 20.6935 28 18.3734 28 16C27.9963 12.8185 26.7308 9.76845 24.4812 7.51882C22.2316 5.26918 19.1815 4.00371 16 4.00001Z"
+        fill="black"
+      />
+    </svg>
+  );
+
+  const [firstPostIndex, lastPostIndex, pagination] = usePagination({
+    totalPosts: filteredCourses.length,
+    postsPerPage: totalContentShown,
+    currentPage: currentPage,
+    setCurrentPage: setCurrentPage,
+    paginationClassName: "flex w-full justify-end",
+    pageNumberClassName: "hidden",
+    previousChildren: prevButton,
+    nextChildren: nextButton,
+  });
 
   useEffect(() => {
-    // function handleResize() {
-    //   setTotalContentShown(dynamicContentView(3, 6, 6, 9, 12));
-    // }
-    // window.addEventListener("resize", handleResize);
-
     const courses = allCourses.allCourses.filter((filter) => {
       return (
         courseTypeFilter(affiliationFilter, filter.affiliation) &&
@@ -33,11 +93,20 @@ const CoursesResults = () => {
     setFilteredCourses(courses);
   }, [affiliationFilter, degreeFilter, studyFieldFilter]);
 
-  const handleContentVisibility = (filterId) => {
-    setContentIsOpen((prevVisibility) => ({
-      ...prevVisibility,
-      [filterId]: !prevVisibility[filterId],
-    }));
+  const handleContentVisibility = (section) => {
+    switch (section) {
+      case "affiliation":
+        setAffiliationIsOpen(!affiliationIsOpen);
+        break;
+      case "degree":
+        setDegreeIsOpen(!degreeIsOpen);
+        break;
+      case "study_field":
+        setStudyFieldIsOpen(!studyFieldIsOpen);
+        break;
+      default:
+        break;
+    }
   };
 
   const handleSearchFilter = () => {
@@ -50,7 +119,11 @@ const CoursesResults = () => {
         <div className="flex flex-row justify-between lg:justify-start border-b items-center">
           <h1 className="text-2xl font-semibold py-3">Search Results:</h1>
           {filterIsOpen ? (
-            <span onClick={handleSearchFilter}>
+            <span
+              role="button"
+              onClick={handleSearchFilter}
+              className="block lg:hidden w-5 h-5"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -77,7 +150,8 @@ const CoursesResults = () => {
           ) : (
             <span
               onClick={handleSearchFilter}
-              className="block lg:hidden bg-contain w-5 h-5"
+              role="button"
+              className="block lg:hidden bg-contain w-5 h-5 "
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -105,63 +179,109 @@ const CoursesResults = () => {
 
         {filterIsOpen && (
           <section className="lg:hidden flex flex-col absolute z-10 bg-white mt-16 right-4 sm:right-20 p-4 shadow-lg rounded-lg">
-            {courseFilters.map((filter) => (
-              <Fragment key={filter.id}>
-                <div
-                  onClick={() => handleContentVisibility(filter.id)}
-                  className="flex flex-row flex-nowrap justify-between items-center border-b border-black"
-                >
-                  <h1 className="font-normal text-2xl">{filter.title}</h1>{" "}
-                  {contentIsOpen[filter.id] ? (
-                    <FaChevronDown />
-                  ) : (
-                    <FaChevronUp />
-                  )}
-                </div>
-                <div
-                  className={`${
-                    contentIsOpen[filter.id] ? "hidden" : "flex"
-                  } flex-col w-auto pr-2 h-auto overflow-auto custom-scrollbar`}
-                  key={filter.id}
-                >
-                  {filter.content.map((content) => (
-                    <label htmlFor={content} key={content}>
-                      <input
-                        type="checkbox"
-                        name={content}
-                        id={content}
-                        value={content}
-                        onChange={(e) => handleFilter(filter.title, e)}
-                      />{" "}
-                      {content}
-                    </label>
-                  ))}
-                </div>
-              </Fragment>
-            ))}
+            <>
+              <div
+                onClick={() => handleContentVisibility("affiliation")}
+                className="flex flex-row flex-nowrap justify-between items-center border-b border-black hover:cursor-pointer"
+              >
+                <h1 className="font-normal text-2xl">Affiliation</h1>{" "}
+                {affiliationIsOpen ? <FaChevronDown /> : <FaChevronUp />}
+              </div>
+              <div
+                className={`${
+                  affiliationIsOpen ? "hidden" : "flex"
+                } flex-col w-auto pr-2 h-auto overflow-auto custom-scrollbar`}
+              >
+                {Courses.affiliationData.map((filter) => (
+                  <label htmlFor={filter} key={filter}>
+                    <input
+                      type="checkbox"
+                      name={filter}
+                      id={filter}
+                      value={filter}
+                      onChange={(e) => handleFilter(e, setAffiliationFilter)}
+                    />{" "}
+                    {capitalizeFirstLetter(filter)}
+                  </label>
+                ))}
+              </div>
+              <div
+                onClick={() => handleContentVisibility("degree")}
+                className="flex flex-row flex-nowrap justify-between items-center border-b border-black hover:cursor-pointer"
+              >
+                <h1 className="font-normal text-2xl">Degree</h1>{" "}
+                {degreeIsOpen ? <FaChevronDown /> : <FaChevronUp />}
+              </div>
+              <div
+                className={`${
+                  degreeIsOpen ? "hidden" : "flex"
+                } flex-col w-auto pr-2 h-auto overflow-auto custom-scrollbar`}
+              >
+                {Courses.degreeData.map((filter) => (
+                  <label htmlFor={filter} key={filter}>
+                    <input
+                      type="checkbox"
+                      name={filter}
+                      id={filter}
+                      value={filter}
+                      onChange={(e) => handleFilter(e, setDegreeFilter)}
+                    />{" "}
+                    {capitalizeFirstLetter(filter)}
+                  </label>
+                ))}
+              </div>
+              <div
+                onClick={() => handleContentVisibility("study_field")}
+                className="flex flex-row flex-nowrap justify-between items-center border-b border-black hover:cursor-pointer"
+              >
+                <h1 className="font-normal text-2xl">Field of Study</h1>{" "}
+                {studyFieldIsOpen ? <FaChevronDown /> : <FaChevronUp />}
+              </div>
+              <div
+                className={`${
+                  studyFieldIsOpen ? "hidden" : "flex"
+                } flex-col w-auto pr-2 h-auto overflow-auto custom-scrollbar`}
+              >
+                {Courses.studyFieldData.map((filter) => (
+                  <label htmlFor={filter} key={filter}>
+                    <input
+                      type="checkbox"
+                      name={filter}
+                      id={filter}
+                      value={filter}
+                      onChange={(e) => handleFilter(e, setStudyFieldFilter)}
+                    />{" "}
+                    {capitalizeFirstLetter(filter)}
+                  </label>
+                ))}
+              </div>
+            </>
           </section>
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 w-full">
-          {filteredCourses.slice(0, totalContentShown).map((course) => (
-            <div
-              key={course.id}
-              className="w-auto h-auto bg-white flex flex-col items-center text-center"
-            >
-              <div className="w-28 h-28 absolute bg-white p-4 rounded-full flex items-center shadow-lg">
-                <img
-                  src={images.tribhuvanuniversitylogo}
-                  alt="imglogo"
-                  className="w-24 h-24"
-                />
+          {filteredCourses
+            .slice(firstPostIndex, lastPostIndex)
+            .map((course) => (
+              <div
+                key={course.id}
+                className="w-auto h-auto bg-white flex flex-col items-center text-center"
+              >
+                <div className="w-28 h-28 absolute bg-white p-4 rounded-full flex items-center shadow-lg">
+                  <img
+                    src={images.tribhuvanuniversitylogo}
+                    alt="imglogo"
+                    className="w-24 h-24"
+                  />
+                </div>
+                <div className="bg-[#D9D9D9] px-4 py-14 md:pb-4 md:pt-10 rounded-lg mt-20 h-full w-full">
+                  <h1 className="font-bold">{course.title}</h1>
+                  <p>Affiliation: {course.affiliation}</p>
+                  <p>Duration: {course.duration}</p>
+                </div>
               </div>
-              <div className="bg-[#D9D9D9] px-4 py-14 md:pb-4 md:pt-10 rounded-lg mt-20 h-full w-full">
-                <h1 className="font-bold">{course.title}</h1>
-                <p>Affiliation: {course.affiliation}</p>
-                <p>Duration: {course.duration}</p>
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
+        {pagination}
       </section>
       <section>college inquiry form</section>
     </section>

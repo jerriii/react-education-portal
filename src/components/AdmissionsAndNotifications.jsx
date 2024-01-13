@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AllContext } from "../App";
-import Span from "./Span";
+import Span from "../utils/Span";
 import useDynamicDisplay from "../CustomHooks/useDynamicDisplay";
 
 const AdmissionsAndNotifications = () => {
@@ -9,7 +9,12 @@ const AdmissionsAndNotifications = () => {
   const featuredItems = Home.featuredItems;
   const [viewMore, setViewMore] = useState(false);
 
-  const [itemsToShow] = useDynamicDisplay(3, 3, 3, 5, 5);
+  const [itemsToShow] = useDynamicDisplay({
+    tablet: 3,
+    desktopsm: 3,
+    desktopmd: 5,
+    other: 5,
+  });
 
   // const navigate = useNavigate();
   const handleViewMore = () => {

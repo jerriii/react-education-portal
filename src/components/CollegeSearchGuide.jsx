@@ -1,6 +1,6 @@
 import AliceCarousel from "react-alice-carousel";
 import images from "../assets/img/index";
-import Button from "./Button";
+import Button from "../utils/Button";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { useRef } from "react";
 import "../../src/assets/css/custom-carousel.css";

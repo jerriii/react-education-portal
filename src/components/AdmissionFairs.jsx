@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AllContext } from "../App";
-import Span from "./Span";
+import Span from "../utils/Span";
 import useDynamicDisplay from "../CustomHooks/useDynamicDisplay";
 const AdmissionFairs = () => {
   const { Home } = useContext(AllContext);
@@ -8,7 +8,11 @@ const AdmissionFairs = () => {
   const advertisements = Home.advertisements;
   const collegeDatas = Home.collegeDatas;
   let total_colleges_shown = collegeDatas.length;
-  const [items_to_show] = useDynamicDisplay(3, 6, 9, 9, 9);
+  const [items_to_show] = useDynamicDisplay({
+    desktopsm: 9,
+    desktopmd: 9,
+    other: 9,
+  });
   const handleViewMore = () => {
     setViewMore(!viewMore);
   };

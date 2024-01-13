@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-const useDynamicDisplay = (
+const useDynamicDisplay = ({
   mobile = 3,
   tablet = 6,
   desktopsm = 9,
   desktopmd = 12,
-  other = 15
-) => {
+  other = 15,
+}) => {
   const [totalContentShown, setTotalContentShown] =
     useState(totalContentToShow);
   function totalContentToShow() {

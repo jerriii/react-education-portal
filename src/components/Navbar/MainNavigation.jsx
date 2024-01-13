@@ -1,4 +1,4 @@
-import Button from "../Button";
+import Button from "../../utils/Button";
 import { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AllContext } from "../../App";

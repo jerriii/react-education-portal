@@ -1,14 +1,10 @@
-import "./App.css";
-import NavBar from "../src/components/Navbar/Navbar";
-import images from "../src/assets/img/index";
+import { createContext, useState, Suspense, lazy } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Home from "../src/Pages/Home";
-import School from "./Pages/School";
-import Courses from "./Pages/Courses";
-import { createContext, useState } from "react";
-import Footer from "./components/Footer";
+import "./App.css";
+import images from "../src/assets/img/index";
 import useUniqueDataFilter from "./CustomHooks/useUniqueDataFilter";
 import allCourses from "../src/components/DummyData.json";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 export const AllContext = createContext({
   Navbar: {},
@@ -16,6 +12,12 @@ export const AllContext = createContext({
   Courses: {},
   Footer: {},
 });
+const NavBar = lazy(() => import("../src/components/Navbar/Navbar"));
+const Home = lazy(() => import("../src/Pages/Home"));
+const School = lazy(() => import("./Pages/School"));
+const Courses = lazy(() => import("./Pages/Courses"));
+const Footer = lazy(() => import("./components/Footer"));
+
 function App() {
   const navigate = useNavigate();
   const handleNavbarClick = (path) => {
@@ -169,19 +171,19 @@ function App() {
 
   const advertisements = [
     {
-      name: "Advertisement 1",
+      name: "Advertisement1",
       href: "/advertisement1",
     },
     {
-      name: "Advertisement 2",
+      name: "Advertisement2",
       href: "/advertisement2",
     },
     {
-      name: "Advertisement 3",
+      name: "Advertisement3",
       href: "/advertisement3",
     },
     {
-      name: "Advertisement 4",
+      name: "Advertisement4",
       href: "/advertisement4",
     },
   ];
@@ -305,32 +307,6 @@ function App() {
     { id: 2, name: "Terms & Conditions", href: "/termsandconditions" },
   ];
 
-  const courseFilters = [
-    {
-      id: 1,
-      title: "Affiliation",
-      content: [
-        "Tribhuvan University",
-        "Kathmandu University",
-        "Pokhara University",
-        "Purbanchal University",
-        "Mid-Western University",
-        "Far-Western University",
-        "Harvard University",
-      ],
-    },
-    {
-      id: 2,
-      title: "Degree",
-      content: ["Bachelors", "Masters", "+2", "Diploma", "Doctorate", "CA"],
-    },
-    {
-      id: 3,
-      title: "Field of study",
-      content: ["Management", "Humanities", "Science", "Engineering"],
-    },
-  ];
-
   const [degreeData] = useUniqueDataFilter(allCourses.allCourses, "degree");
 
   const [affiliationData] = useUniqueDataFilter(
@@ -354,13 +330,6 @@ function App() {
     setIsDropDown(!isDropDown);
   };
 
-  //   checked
-  //     ? setAffiliationFilter((filter) => [...filter, checkValue])
-  //     : setAffiliationFilter((filterContent) =>
-  //         filterContent.filter((e) => e !== checkValue)
-  //       );
-  // };
-
   return (
     <AllContext.Provider
       value={{
@@ -382,7 +351,6 @@ function App() {
         },
         Courses: {
           images,
-          courseFilters,
           affiliationData,
           degreeData,
           studyFieldData,
@@ -399,13 +367,15 @@ function App() {
         },
       }}
     >
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/school" element={<School />} />
-        <Route path="/courses" element={<Courses />} />
-      </Routes>
-      <Footer />
+      <Suspense fallback={<LoadingSpinner />}>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/school" element={<School />} />
+          <Route path="/courses" element={<Courses />} />
+        </Routes>
+        <Footer />
+      </Suspense>
     </AllContext.Provider>
   );
 }
