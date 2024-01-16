@@ -3,9 +3,15 @@ export function capitalizeFirstLetter(str) {
 }
 
 export function courseTypeFilter(arrayFilterList, filterType) {
-  return arrayFilterList.length === 0
-    ? true
-    : arrayFilterList.includes(filterType);
+  if (Array.isArray(filterType)) {
+    return arrayFilterList.length === 0
+      ? true
+      : filterType.some((item) => arrayFilterList.includes(item));
+  } else {
+    return arrayFilterList.length === 0
+      ? true
+      : arrayFilterList.includes(filterType);
+  }
 }
 
 export function handleFilter(event, setFilter) {

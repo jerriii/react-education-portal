@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import AliceCarousel from "react-alice-carousel";
-import { useContext } from "react";
-import { AllContext } from "../App";
+import PropTypes from "prop-types";
+import "react-alice-carousel/lib/alice-carousel.css";
 
 const responsive = {
   0: {
@@ -18,19 +17,7 @@ const responsive = {
   },
 };
 
-const AdvertisementSection = () => {
-  const { Home } = useContext(AllContext);
-  const advertisements = Home.advertisements;
-  const advertisementContent = advertisements.map((advertisement) => (
-    <Link to={advertisement.href} key={advertisement.name}>
-      <div
-        className={`advertisement-box border-2 w-full py-12 bg-[lightgray] px-20
-        text-center rounded-md`}
-      >
-        {advertisement.name}
-      </div>
-    </Link>
-  ));
+const AdvertisementSection = ({ data }) => {
   return (
     <div className="advertisement-section flex cursor-pointer justify-between">
       <AliceCarousel
@@ -41,10 +28,19 @@ const AdvertisementSection = () => {
         autoPlayStrategy="all"
         disableButtonsControls
         responsive={responsive}
-        items={advertisementContent}
+        items={data}
       />
     </div>
   );
+};
+
+AdvertisementSection.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      href: PropTypes.string,
+    })
+  ),
 };
 
 export default AdvertisementSection;

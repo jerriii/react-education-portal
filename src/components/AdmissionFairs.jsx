@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AllContext } from "../App";
 import Span from "../utils/Span";
 import useDynamicDisplay from "../CustomHooks/useDynamicDisplay";
+
 const AdmissionFairs = () => {
   const { Home } = useContext(AllContext);
   const [viewMore, setViewMore] = useState(false);
@@ -37,7 +38,11 @@ const AdmissionFairs = () => {
           {collegeDatas.map((data, index) =>
             viewMore ? (
               <div key={data.id} className="rounded-md border shadow-lg w-auto">
-                <img src={data.images} alt={data.name} className="w-full" />
+                <img
+                  src={data.college_images}
+                  alt={data.name}
+                  className="w-full"
+                />
                 <div className="px-4">
                   <h1>{data.name}</h1>
                   <p className="border-b">{data.address}</p>
@@ -51,7 +56,11 @@ const AdmissionFairs = () => {
                   key={data.id}
                   className="rounded-md border shadow-lg w-auto"
                 >
-                  <img src={data.images} alt={data.name} className="w-full" />
+                  <img
+                    src={data.college_images}
+                    alt={data.name}
+                    className="w-full"
+                  />
                   <div className="px-4">
                     <h1>{data.name}</h1>
                     <p className="border-b">{data.address}</p>

@@ -1,14 +1,17 @@
 import { useContext } from "react";
 import { AllContext } from "../App";
 import { capitalizeFirstLetter, handleFilter } from "../utils/Utils";
-const CoursesFilter = () => {
-  const { Courses } = useContext(AllContext);
+const CollegesFilter = () => {
+  const { Colleges } = useContext(AllContext);
   const {
-    setAffiliationFilter,
-    setDegreeFilter,
-    setStudyFieldFilter,
-    allCourses,
-  } = Courses;
+    setCollegeCoursesFilter,
+    setCollegeAddressFilter,
+    setCollegeAffiliatedFilter,
+    collegeAddressData,
+    collegeCoursesData,
+    collegeAffiliationData,
+    collegeDatas,
+  } = Colleges;
 
   return (
     <main role="search" className="hidden lg:flex flex-col gap-5">
@@ -17,22 +20,24 @@ const CoursesFilter = () => {
         <section className="grid grid-flow-row grid-cols-1">
           <>
             <h1 className="font-normal text-2xl">Affiliation</h1>
-            <div className="flex flex-col w-auto pr-2 h-56 overflow-auto custom-scrollbar">
-              {Courses.affiliationData.map((data) => (
+            <div className="flex flex-col w-auto pr-2 h-56 items-start overflow-auto custom-scrollbar">
+              {collegeAffiliationData.map((data, i) => (
                 <div
                   className="flex flex-row gap-2 hover:cursor-pointer"
-                  key={data}
+                  key={`${data} + ${i}`}
                 >
                   <input
                     type="checkbox"
                     name={data}
                     value={data}
-                    id={data}
-                    onChange={(e) => handleFilter(e, setAffiliationFilter)}
+                    id={`checkbox_${i}_${data}`}
+                    onChange={(e) =>
+                      handleFilter(e, setCollegeAffiliatedFilter)
+                    }
                     className="hover:cursor-pointer"
                   />{" "}
                   <label
-                    htmlFor={data}
+                    htmlFor={`checkbox_${i}_${data}`}
                     className="group hover:text-[#19A948] transition ease-linear duration-200 cursor-pointer"
                   >
                     {capitalizeFirstLetter(data)}
@@ -40,23 +45,22 @@ const CoursesFilter = () => {
                 </div>
               ))}
             </div>
-            <h1 className="font-normal text-2xl">Degree</h1>
-            <div className="flex flex-col w-auto pr-2 h-56 overflow-auto custom-scrollbar">
-              {Courses.degreeData.map((data) => (
+            <h1 className="font-normal text-2xl">Address</h1>
+            <div className="flex flex-col w-auto items-start pr-2 h-56 overflow-auto custom-scrollbar">
+              {collegeAddressData.map((data, i) => (
                 <div
                   className="flex flex-row gap-2 hover:cursor-pointer"
-                  key={data}
+                  key={`${data} + ${i}`}
                 >
                   <input
                     type="checkbox"
                     name={data}
                     value={data}
-                    id={data}
-                    className="hover:cursor-pointer"
-                    onChange={(e) => handleFilter(e, setDegreeFilter)}
+                    id={`checkbox_${i}_${data}`}
+                    onChange={(e) => handleFilter(e, setCollegeAddressFilter)}
                   />{" "}
                   <label
-                    htmlFor={data}
+                    htmlFor={`checkbox_${i}_${data}`}
                     className="group hover:text-[#19A948] transition ease-linear duration-200 cursor-pointer"
                   >
                     {capitalizeFirstLetter(data)}
@@ -64,23 +68,22 @@ const CoursesFilter = () => {
                 </div>
               ))}
             </div>
-            <h1 className="font-normal text-2xl">Field of Study</h1>
-            <div className="flex flex-col w-auto pr-2 h-56 overflow-auto custom-scrollbar">
-              {Courses.studyFieldData?.map((data, index) => (
+            <h1 className="font-normal text-2xl">Courses</h1>
+            <div className="flex flex-col w-auto pr-2 h-56 items-start overflow-auto custom-scrollbar">
+              {collegeCoursesData.map((data, i) => (
                 <div
                   className="flex flex-row gap-2 hover:cursor-pointer"
-                  key={`${data} + ${index}`}
+                  key={`${data} + ${i}`}
                 >
                   <input
                     type="checkbox"
                     name={data}
                     value={data}
-                    id={data}
-                    className="hover:cursor-pointer"
-                    onChange={(e) => handleFilter(e, setStudyFieldFilter)}
+                    id={`checkbox_${i}_${data}`}
+                    onChange={(e) => handleFilter(e, setCollegeCoursesFilter)}
                   />{" "}
                   <label
-                    htmlFor={data}
+                    htmlFor={`checkbox_${i}_${data}`}
                     className="group hover:text-[#19A948] transition ease-linear duration-200 cursor-pointer"
                   >
                     {capitalizeFirstLetter(data)}
@@ -95,15 +98,19 @@ const CoursesFilter = () => {
         <h1 className="text-center font-normal text-xl">
           Most searched course&apos;s
         </h1>
-        {allCourses.slice(0, 3).map((course, index) => (
+        {collegeDatas.slice(0, 3).map((college, index) => (
           <div
             key={index}
             className="flex flex-row bg-white px-4 py-2 rounded-lg items-center gap-3 hover:cursor-pointer"
           >
-            <img src={course.logo} alt={index} className="w-20 h-20" />
+            <img
+              src={college.college_images}
+              alt={index}
+              className="w-20 h-20"
+            />
             <article>
-              <h1 className="font-semibold">{course.title}</h1>
-              <p>{course.affiliation}</p>
+              <h1 className="font-semibold">{college.name}</h1>
+              <p>{college.affiliation}</p>
             </article>
           </div>
         ))}
@@ -112,4 +119,4 @@ const CoursesFilter = () => {
   );
 };
 
-export default CoursesFilter;
+export default CollegesFilter;

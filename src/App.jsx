@@ -3,18 +3,21 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import images from "../src/assets/img/index";
 import useUniqueDataFilter from "./CustomHooks/useUniqueDataFilter";
-import allCourses from "../src/components/DummyData.json";
+import data from "../src/components/DummyData.json";
 import LoadingSpinner from "./components/LoadingSpinner";
+import CourseInquiry from "./Pages/CourseInquiry";
 
 export const AllContext = createContext({
   Navbar: {},
   Home: {},
+  Colleges: {},
   Courses: {},
+  CourseInquiry: {},
   Footer: {},
 });
 const NavBar = lazy(() => import("../src/components/Navbar/Navbar"));
 const Home = lazy(() => import("../src/Pages/Home"));
-const School = lazy(() => import("./Pages/School"));
+const Colleges = lazy(() => import("../src/Pages/Colleges"));
 const Courses = lazy(() => import("./Pages/Courses"));
 const Footer = lazy(() => import("./components/Footer"));
 
@@ -24,307 +27,34 @@ function App() {
     navigate(path);
   };
 
-  const menuItems = [
-    {
-      name: "Home",
-      href: "/",
-      path: "",
-    },
-    {
-      name: "Vacancies",
-      href: "/vacancies",
-      path: "vacancies",
-    },
-    {
-      name: "Colleges",
-      href: "/colleges",
-      path: "colleges",
-    },
-    {
-      name: "School",
-      href: "/school",
-      path: "school",
-    },
-    {
-      name: "Courses",
-      href: "/courses",
-      path: "courses",
-    },
-    {
-      name: "Link 1",
-      href: "/link1",
-      path: "link1",
-    },
-    {
-      name: "Link 2",
-      href: "/link2",
-      path: "link2",
-    },
-    {
-      name: "Link 3",
-      href: "/link3",
-      path: "link3",
-    },
-  ];
-
-  const featuredItems = [
-    {
-      id: 1,
-      name: "Kathmandu University School of Education (KUSoEd)",
-      description:
-        "MPhil in Development Studies MPhil in Educational Leadership..",
-      image: images.admissionslogo,
-      href: "/feature1",
-    },
-    {
-      id: 2,
-      name: "Kathmandu University School of Education (KUSoEd)",
-      description:
-        "MPhil in Development Studies MPhil in Educational Leadership..",
-      image: images.admissionslogo,
-      href: "/feature2",
-    },
-    {
-      id: 3,
-      name: "Kathmandu University School of Education (KUSoEd)",
-      description:
-        "MPhil in Development Studies MPhil in Educational Leadership..",
-      image: images.admissionslogo,
-      href: "/feature3",
-    },
-    {
-      id: 4,
-      name: "Kathmandu University School of Education (KUSoEd)",
-      description:
-        "MPhil in Development Studies MPhil in Educational Leadership..",
-      image: images.admissionslogo,
-      href: "/feature4",
-    },
-    {
-      id: 5,
-      name: "Kathmandu University School of Education (KUSoEd)",
-      description:
-        "MPhil in Development Studies MPhil in Educational Leadership..",
-      image: images.admissionslogo,
-      href: "/feature5",
-    },
-    {
-      id: 6,
-      name: "Kathmandu University School of Education (KUSoEd)",
-      description:
-        "MPhil in Development Studies MPhil in Educational Leadership..",
-      image: images.admissionslogo,
-      href: "/feature6",
-    },
-    {
-      id: 7,
-      name: "Kathmandu University School of Education (KUSoEd)",
-      description:
-        "MPhil in Development Studies MPhil in Educational Leadership..",
-      image: images.admissionslogo,
-      href: "/feature7",
-    },
-  ];
-
-  const studyFieldItems = [
-    {
-      id: 1,
-      field_name: "IT",
-      total_colleges: "30",
-      image: images.facultyLogo1,
-      courses: ["BCA", "BIM", "BIT"],
-      href: "/faculty1",
-    },
-    {
-      id: 2,
-      field_name: "IT",
-      total_colleges: "30",
-      image: images.facultyLogo1,
-      courses: ["BCA", "BIM", "BIT"],
-      href: "/faculty2",
-    },
-    {
-      id: 3,
-      field_name: "IT",
-      total_colleges: "30",
-      image: images.facultyLogo1,
-      courses: ["BCA", "BIM", "BIT"],
-      href: "/faculty3",
-    },
-    {
-      id: 4,
-      field_name: "IT",
-      total_colleges: "30",
-      image: images.facultyLogo1,
-      courses: ["BCA", "BIM", "BIT"],
-      href: "/faculty4",
-    },
-    {
-      id: 5,
-      field_name: "IT",
-      total_colleges: "30",
-      image: images.facultyLogo1,
-      courses: ["BCA", "BIM", "BIT"],
-      href: "/faculty5",
-    },
-  ];
-
-  const advertisements = [
-    {
-      name: "Advertisement1",
-      href: "/advertisement1",
-    },
-    {
-      name: "Advertisement2",
-      href: "/advertisement2",
-    },
-    {
-      name: "Advertisement3",
-      href: "/advertisement3",
-    },
-    {
-      name: "Advertisement4",
-      href: "/advertisement4",
-    },
-  ];
-
-  const collegeDatas = [
-    {
-      id: 1,
-      name: "People Campus",
-      address: "Paknajol, Kathmandu",
-      images: images.collegeimage1,
-      href: "colleges",
-    },
-    {
-      id: 2,
-      name: "People Campus",
-      address: "Paknajol, Kathmandu",
-      images: images.collegeimage1,
-      href: `colleges`,
-    },
-    {
-      id: 3,
-      name: "People Campus",
-      address: "Paknajol, Kathmandu",
-      images: images.collegeimage1,
-      href: `colleges`,
-    },
-    {
-      id: 4,
-      name: "People Campus",
-      address: "Paknajol, Kathmandu",
-      images: images.collegeimage1,
-      href: `colleges`,
-    },
-    {
-      id: 5,
-      name: "People Campus",
-      address: "Paknajol, Kathmandu",
-      images: images.collegeimage1,
-      href: `colleges`,
-    },
-    {
-      id: 6,
-      name: "People Campus",
-      address: "Paknajol, Kathmandu",
-      images: images.collegeimage1,
-      href: `colleges`,
-    },
-    {
-      id: 7,
-      name: "People Campus",
-      address: "Paknajol, Kathmandu",
-      images: images.collegeimage1,
-      href: `colleges`,
-    },
-    {
-      id: 8,
-      name: "People Campus",
-      address: "Paknajol, Kathmandu",
-      images: images.collegeimage1,
-      href: `colleges`,
-    },
-    {
-      id: 9,
-      name: "People Campus",
-      address: "Paknajol, Kathmandu",
-      images: images.collegeimage1,
-      href: `colleges`,
-    },
-    {
-      id: 10,
-      name: "People Campus",
-      address: "Paknajol, Kathmandu",
-      images: images.collegeimage1,
-      href: `colleges`,
-    },
-    {
-      id: 11,
-      name: "People Campus",
-      address: "Paknajol, Kathmandu",
-      images: images.collegeimage1,
-      href: `colleges`,
-    },
-    {
-      id: 12,
-      name: "People Campus",
-      address: "Paknajol, Kathmandu",
-      images: images.collegeimage1,
-      href: `colleges`,
-    },
-  ];
-
-  const socialLinks = [
-    {
-      id: 1,
-      name: "Facebook",
-      href: "www.facebook.com",
-      logo: images.facultyLogo1,
-    },
-    {
-      id: 2,
-      name: "Twitter",
-      href: "www.facebook.com",
-      logo: images.facultyLogo1,
-    },
-    {
-      id: 3,
-      name: "Instagram",
-      href: "www.instagram.com",
-      logo: images.facultyLogo1,
-    },
-    {
-      id: 4,
-      name: "Google",
-      href: "www.google.com",
-      logo: images.facultyLogo1,
-    },
-  ];
-
-  const informationLinks = [
-    { id: 1, name: "About us", href: "/about" },
-    { id: 2, name: "Terms & Conditions", href: "/termsandconditions" },
-  ];
-
-  const [degreeData] = useUniqueDataFilter(allCourses.allCourses, "degree");
-
-  const [affiliationData] = useUniqueDataFilter(
-    allCourses.allCourses,
+  const {
+    menuItems,
+    studyFieldItems,
+    advertisements,
+    collegeDatas,
+    socialLinks,
+    informationLinks,
+    allCourses,
+  } = data;
+  const [degreeData] = useUniqueDataFilter(allCourses, "degree");
+  const [affiliationData] = useUniqueDataFilter(allCourses, "affiliation");
+  const [studyFieldData] = useUniqueDataFilter(allCourses, "study_field");
+  const [collegeAffiliationData] = useUniqueDataFilter(
+    collegeDatas,
     "affiliation"
   );
+  const [collegeAddressData] = useUniqueDataFilter(collegeDatas, "address");
+  const [collegeCoursesData] = useUniqueDataFilter(collegeDatas, "courses");
 
-  const [studyFieldData] = useUniqueDataFilter(
-    allCourses.allCourses,
-    "study_field"
-  );
-
-  const navMenu = Math.min(menuItems.length, 5);
+  const navMenu = Math.min(menuItems.length, 4);
   const dropDownMenu = Math.max(menuItems.length - navMenu, 0);
   const [isDropDown, setIsDropDown] = useState(false);
   const [affiliationFilter, setAffiliationFilter] = useState([]);
   const [degreeFilter, setDegreeFilter] = useState([]);
   const [studyFieldFilter, setStudyFieldFilter] = useState([]);
+  const [collegeAffiliatedFilter, setCollegeAffiliatedFilter] = useState([]);
+  const [collegeAddressFilter, setCollegeAddressFilter] = useState([]);
+  const [collegeCoursesFilter, setCollegeCoursesFilter] = useState([]);
 
   const handleDropDown = () => {
     setIsDropDown(!isDropDown);
@@ -336,21 +66,33 @@ function App() {
         Navbar: {
           images,
           handleNavbarClick,
-          menuItems,
           navMenu,
           isDropDown,
           dropDownMenu,
           handleDropDown,
-          featuredItems,
+          menuItems,
         },
         Home: {
-          featuredItems,
           studyFieldItems,
           advertisements,
           collegeDatas,
         },
+        Colleges: {
+          images,
+          setCollegeCoursesFilter,
+          setCollegeAddressFilter,
+          setCollegeAffiliatedFilter,
+          collegeDatas,
+          collegeAffiliationData,
+          collegeAddressData,
+          collegeCoursesData,
+          collegeAffiliatedFilter,
+          collegeAddressFilter,
+          collegeCoursesFilter,
+        },
         Courses: {
           images,
+          allCourses,
           affiliationData,
           degreeData,
           studyFieldData,
@@ -360,6 +102,9 @@ function App() {
           setDegreeFilter,
           studyFieldFilter,
           setStudyFieldFilter,
+        },
+        CourseInquiry: {
+          advertisements,
         },
         Footer: {
           socialLinks,
@@ -371,8 +116,9 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/school" element={<School />} />
+          <Route path="/colleges" element={<Colleges />} />
           <Route path="/courses" element={<Courses />} />
+          <Route path="/course-inquiry" element={<CourseInquiry />} />
         </Routes>
         <Footer />
       </Suspense>

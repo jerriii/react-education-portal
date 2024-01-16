@@ -9,7 +9,15 @@ const useUniqueDataFilter = (data, filterString) => {
 
     // Map through allCourses and add unique affiliations to the Set
     data.forEach((element) => {
-      uniqueAffiliations.add(element[filterString]);
+      if (Array.isArray(element[filterString])) {
+        // If it's an array, add its values to the Set
+        element[filterString].forEach((value) => {
+          uniqueAffiliations.add(value);
+        });
+      } else {
+        // If it's not an array, assume it's a single value and add it to the Set
+        uniqueAffiliations.add(element[filterString]);
+      }
     });
 
     // Convert the Set back to an array and update the state

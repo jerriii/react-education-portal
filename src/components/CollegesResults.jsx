@@ -1,7 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { AllContext } from "../App";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import allCourses from "./DummyData.json";
 import {
   capitalizeFirstLetter,
   courseTypeFilter,
@@ -11,21 +10,27 @@ import useDynamicDisplay from "../CustomHooks/useDynamicDisplay";
 import usePagination from "../CustomHooks/usePagination";
 import InquiryForm from "../utils/InquiryForm";
 
-const CoursesResults = () => {
-  const { Courses } = useContext(AllContext);
+const CollegesResults = () => {
+  const { Colleges } = useContext(AllContext);
   const {
-    affiliationFilter,
-    degreeFilter,
-    studyFieldFilter,
-    setAffiliationFilter,
-    setDegreeFilter,
-    setStudyFieldFilter,
-  } = Courses;
+    collegeDatas,
+    collegeAddressData,
+    collegeCoursesData,
+    collegeAffiliationData,
+    collegeAffiliatedFilter,
+    collegeAddressFilter,
+    collegeCoursesFilter,
+    setCollegeAffiliatedFilter,
+    setCollegeAddressFilter,
+    setCollegeCoursesFilter,
+  } = Colleges;
+
   const [filterIsOpen, setFilterIsOpen] = useState(false);
-  const [affiliationIsOpen, setAffiliationIsOpen] = useState(false);
-  const [degreeIsOpen, setDegreeIsOpen] = useState(false);
-  const [studyFieldIsOpen, setStudyFieldIsOpen] = useState(false);
-  const [filteredCourses, setFilteredCourses] = useState(allCourses.allCourses);
+  const [collegeAffiliationIsOpen, setCollegeAffiliationIsOpen] =
+    useState(false);
+  const [collegeAddressIsOpen, setCollegeAddressIsOpen] = useState(false);
+  const [collegeCoursesIsOpen, setCollegeCoursesIsOpen] = useState(false);
+  const [filteredCollege, setFilteredCollege] = useState(collegeDatas);
   const [totalContentShown] = useDynamicDisplay({
     desktopsm: 6,
     desktopmd: 9,
@@ -69,13 +74,9 @@ const CoursesResults = () => {
       />
     </svg>
   );
-  const [childData, setChildData] = useState();
 
-  function handleChildData(data) {
-    setChildData(data);
-  }
   const [firstPostIndex, lastPostIndex, pagination] = usePagination({
-    totalPosts: filteredCourses.length,
+    totalPosts: filteredCollege.length,
     postsPerPage: totalContentShown,
     currentPage: currentPage,
     setCurrentPage: setCurrentPage,
@@ -85,27 +86,39 @@ const CoursesResults = () => {
     nextChildren: nextButton,
   });
 
+  const [childData, setChildData] = useState();
+
+  const handleData = (data) => {
+    setChildData(data);
+  };
+
   useEffect(() => {
-    const courses = allCourses.allCourses.filter((filter) => {
+    const colleges = collegeDatas.filter((filter) => {
+      const collegeCourses = filter.courses;
       return (
-        courseTypeFilter(affiliationFilter, filter.affiliation) &&
-        courseTypeFilter(degreeFilter, filter.degree) &&
-        courseTypeFilter(studyFieldFilter, filter.study_field)
+        courseTypeFilter(collegeAffiliatedFilter, filter.affiliation) &&
+        courseTypeFilter(collegeAddressFilter, filter.address) &&
+        courseTypeFilter(collegeCoursesFilter, collegeCourses)
       );
     });
-    setFilteredCourses(courses);
-  }, [affiliationFilter, degreeFilter, studyFieldFilter]);
+    setFilteredCollege(colleges);
+  }, [
+    collegeDatas,
+    collegeAffiliatedFilter,
+    collegeAddressFilter,
+    collegeCoursesFilter,
+  ]);
 
   const handleContentVisibility = (section) => {
     switch (section) {
       case "affiliation":
-        setAffiliationIsOpen(!affiliationIsOpen);
+        setCollegeAffiliationIsOpen(!collegeAffiliationIsOpen);
         break;
-      case "degree":
-        setDegreeIsOpen(!degreeIsOpen);
+      case "address":
+        setCollegeAddressIsOpen(!collegeAddressIsOpen);
         break;
-      case "study_field":
-        setStudyFieldIsOpen(!studyFieldIsOpen);
+      case "courses":
+        setCollegeCoursesIsOpen(!collegeCoursesIsOpen);
         break;
       default:
         break;
@@ -188,98 +201,106 @@ const CoursesResults = () => {
                 className="flex flex-row flex-nowrap justify-between items-center border-b border-black hover:cursor-pointer"
               >
                 <h1 className="font-normal text-2xl">Affiliation</h1>{" "}
-                {affiliationIsOpen ? <FaChevronDown /> : <FaChevronUp />}
+                {collegeAffiliationIsOpen ? <FaChevronDown /> : <FaChevronUp />}
               </div>
               <div
                 className={`${
-                  affiliationIsOpen ? "hidden" : "flex"
+                  collegeAffiliationIsOpen ? "hidden" : "flex"
                 } flex-col w-auto pr-2 h-auto overflow-auto custom-scrollbar`}
               >
-                {Courses.affiliationData.map((filter) => (
-                  <label htmlFor={filter} key={filter}>
+                {collegeAffiliationData.map((filter, i) => (
+                  <div key={`${filter} + ${i}`}>
                     <input
                       type="checkbox"
                       name={filter}
-                      id={filter}
+                      id={`checkbox_${i}_affiliation`}
                       value={filter}
-                      onChange={(e) => handleFilter(e, setAffiliationFilter)}
+                      onChange={(e) =>
+                        handleFilter(e, setCollegeAffiliatedFilter)
+                      }
                     />{" "}
-                    {capitalizeFirstLetter(filter)}
-                  </label>
+                    <label htmlFor={`checkbox_${i}_affiliation`}>
+                      {capitalizeFirstLetter(filter)}
+                    </label>
+                  </div>
                 ))}
               </div>
               <div
-                onClick={() => handleContentVisibility("degree")}
+                onClick={() => handleContentVisibility("address")}
                 className="flex flex-row flex-nowrap justify-between items-center border-b border-black hover:cursor-pointer"
               >
-                <h1 className="font-normal text-2xl">Degree</h1>{" "}
-                {degreeIsOpen ? <FaChevronDown /> : <FaChevronUp />}
+                <h1 className="font-normal text-2xl">Address</h1>{" "}
+                {collegeAddressIsOpen ? <FaChevronDown /> : <FaChevronUp />}
               </div>
               <div
                 className={`${
-                  degreeIsOpen ? "hidden" : "flex"
+                  collegeAddressIsOpen ? "hidden" : "flex"
                 } flex-col w-auto pr-2 h-auto overflow-auto custom-scrollbar`}
               >
-                {Courses.degreeData.map((filter) => (
-                  <label htmlFor={filter} key={filter}>
+                {collegeAddressData.map((filter, i) => (
+                  <div key={`${filter} + ${i}`}>
                     <input
                       type="checkbox"
                       name={filter}
-                      id={filter}
+                      id={`checkbox_${i}_address`}
                       value={filter}
-                      onChange={(e) => handleFilter(e, setDegreeFilter)}
+                      onChange={(e) => handleFilter(e, setCollegeAddressFilter)}
                     />{" "}
-                    {capitalizeFirstLetter(filter)}
-                  </label>
+                    <label htmlFor={`checkbox_${i}_address`}>
+                      {capitalizeFirstLetter(filter)}
+                    </label>
+                  </div>
                 ))}
               </div>
               <div
-                onClick={() => handleContentVisibility("study_field")}
+                onClick={() => handleContentVisibility("courses")}
                 className="flex flex-row flex-nowrap justify-between items-center border-b border-black hover:cursor-pointer"
               >
-                <h1 className="font-normal text-2xl">Field of Study</h1>{" "}
-                {studyFieldIsOpen ? <FaChevronDown /> : <FaChevronUp />}
+                <h1 className="font-normal text-2xl">Courses</h1>{" "}
+                {collegeCoursesIsOpen ? <FaChevronDown /> : <FaChevronUp />}
               </div>
               <div
                 className={`${
-                  studyFieldIsOpen ? "hidden" : "flex"
+                  collegeCoursesIsOpen ? "hidden" : "flex"
                 } flex-col w-auto pr-2 h-auto overflow-auto custom-scrollbar`}
               >
-                {Courses.studyFieldData.map((filter) => (
-                  <label htmlFor={filter} key={filter}>
+                {collegeCoursesData.map((filter, i) => (
+                  <div key={`${filter} + ${i}`}>
                     <input
                       type="checkbox"
                       name={filter}
-                      id={filter}
+                      id={`checkbox_${i}_course`}
                       value={filter}
-                      onChange={(e) => handleFilter(e, setStudyFieldFilter)}
+                      onChange={(e) => handleFilter(e, setCollegeCoursesFilter)}
                     />{" "}
-                    {capitalizeFirstLetter(filter)}
-                  </label>
+                    <label htmlFor={`checkbox_${i}_course`}>
+                      {capitalizeFirstLetter(filter)}
+                    </label>
+                  </div>
                 ))}
               </div>
             </>
           </section>
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 w-full">
-          {filteredCourses
+          {filteredCollege
             .slice(firstPostIndex, lastPostIndex)
-            .map((course) => (
+            .map((college) => (
               <div
-                key={course.id}
+                key={college.id}
                 className="w-auto h-auto bg-white flex flex-col items-center text-center"
               >
-                <div className="w-28 h-28 absolute bg-white rounded-full flex items-center shadow-lg">
+                <div className="w-28 h-28 absolute bg-white flex items-center shadow-lg">
                   <img
-                    src={course.logo}
+                    src={college.college_images}
                     alt="imglogo"
-                    className="rounded-full object-cover w-full h-full"
+                    className="w-28 h-28"
                   />
                 </div>
-                <div className="bg-[#D9D9D9] px-4 py-14 md:pb-4 md:pt-10 rounded-lg mt-20 h-full w-full hover:cursor-pointer shadow-md">
-                  <h1 className="font-bold">{course.title}</h1>
-                  <p>Affiliation: {course.affiliation}</p>
-                  <p>Duration: {course.duration}</p>
+                <div className="bg-[#D9D9D9] px-4 py-14 md:pb-4 md:pt-10 rounded-lg mt-20 h-full w-full group hover:cursor-pointer shadow-md">
+                  <h1 className="font-bold">{college.title}</h1>
+                  <p>Affiliation: {college.affiliation}</p>
+                  <p>Duration: {college.duration} months</p>
                 </div>
               </div>
             ))}
@@ -292,8 +313,9 @@ const CoursesResults = () => {
         </h1>
         <InquiryForm
           customFormClass={"p-4 xl:px-32"}
-          sendChildData={handleChildData}
+          sendChildData={handleData}
         />
+
         {childData && (
           <p>
             firstName:{childData.firstName}, lastName:{childData.lastName},
@@ -308,4 +330,4 @@ const CoursesResults = () => {
   );
 };
 
-export default CoursesResults;
+export default CollegesResults;

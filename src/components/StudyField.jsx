@@ -3,6 +3,7 @@ import AliceCarousel from "react-alice-carousel";
 import "../../src/assets/css/carousel.css";
 import { useContext, useRef } from "react";
 import { AllContext } from "../App";
+import images from "../assets/img/index";
 
 const StudyField = () => {
   const { Home } = useContext(AllContext);
@@ -52,7 +53,7 @@ const StudyField = () => {
   //   }
   // };
   return (
-    <div className="study-field w-auto gap-4 flex flex-col items-center my-8 bg-[#D9D9D93D] py-2 sm:py-4 md:px-20">
+    <section className="study-field w-auto gap-4 flex flex-col items-center my-8 bg-[#D9D9D93D] py-2 sm:py-4 md:px-20">
       <h1 className="text-[#000] text-center font-OpenSans font-semibold text-3xl">
         Field of Study
       </h1>
@@ -125,7 +126,7 @@ const StudyField = () => {
               >
                 <div className="flex flex-row flex-nowrap items-center justify-start gap-8 p-2 sm:p-4">
                   <div className="border-solid border-2 border-black rounded-full p-2">
-                    <img src={items.image} alt={index + 1} />
+                    <img src={images.facultyLogo1} alt={index + 1} />
                   </div>
                   <div>
                     <h1 className="font-semibold">{items.field_name}</h1>
@@ -196,7 +197,7 @@ const StudyField = () => {
           </svg>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 export default StudyField;

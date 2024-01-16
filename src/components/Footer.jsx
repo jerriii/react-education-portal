@@ -35,6 +35,8 @@ const Footer = () => {
                 className="flex !bg-[#d9d9d9] h-14 rounded-md border border-black/30 bg-transparent px-8 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                 type="search"
                 placeholder="Search"
+                id="footer_search"
+                name="footer_search"
               />
             </div>
             <Button>Login</Button>
@@ -65,7 +67,7 @@ const Footer = () => {
                 key={items.name}
                 className="flex flex-row gap-2 items-center"
               >
-                <img className="h-4" src={items.logo} alt={items.id} />
+                <img className="h-4" src={images.facultyLogo1} alt={items.id} />
                 {items.name}
               </Link>
             ))}

@@ -2,10 +2,11 @@ import Button from "../../utils/Button";
 import { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AllContext } from "../../App";
+import data from "../DummyData.json";
 
 const MainNavigation = () => {
   const { Navbar } = useContext(AllContext);
-  const featuredItems = Navbar.featuredItems;
+  const featuredItems = data.featuredItems;
   const [isOpen, setIsOpen] = useState(false);
   const [viewNotification, setViewNotification] = useState(false);
   const menuItems = Navbar.menuItems;
@@ -32,13 +33,13 @@ const MainNavigation = () => {
         className={`flex items-center mb-2 p-2 lg:gap-4 sm:p-0 sm:justify-between`}
       >
         <Link to="/">
-          <h1 className=" bg-gradient-to-r from-[#0E0F3B] via-[#083B3F] to-[#007E46]  hidden sm:inline-block text-transparent bg-clip-text text-[50px] font-bold tracking-wide">
+          <h1 className=" bg-gradient-to-r from-[#0E0F3B] via-[#083B3F] to-[#007E46]  hidden md:inline-block text-transparent bg-clip-text text-[50px] font-bold tracking-wide">
             NepEduNavigator
           </h1>
         </Link>
-        <div className="flex sm:hidden mr-auto">
+        <div className="flex md:hidden mr-auto">
           <Link to="/" className="sm:mr-auto leading-normal">
-            <h1 className=" bg-gradient-to-r from-[#0E0F3B] via-[#083B3F] to-[#007E46]  inline-block sm:hidden text-transparent bg-clip-text text-10 font-bold tracking-wide">
+            <h1 className=" bg-gradient-to-r from-[#0E0F3B] via-[#083B3F] to-[#007E46]  inline-block md:hidden text-transparent bg-clip-text text-10 font-bold tracking-wide">
               NepEduNavigator
             </h1>
           </Link>
@@ -145,12 +146,14 @@ const MainNavigation = () => {
         </div>
 
         <div
-          className={`search hidden lg:inline-flex relative items-center gap-2 w-1/2 `}
+          className={`search hidden lg:inline-flex relative items-center gap-6 w-1/2 `}
         >
           <input
             className="flex !bg-[#d9d9d9] h-14 w-full rounded-md border border-black/30 bg-transparent px-8 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
             type="search"
             placeholder="Search"
+            name="search"
+            id="search"
           />
           <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
             <img
