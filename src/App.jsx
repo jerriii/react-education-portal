@@ -6,6 +6,7 @@ import useUniqueDataFilter from "./CustomHooks/useUniqueDataFilter";
 import data from "../src/components/DummyData.json";
 import LoadingSpinner from "./components/LoadingSpinner";
 import CourseInquiry from "./Pages/CourseInquiry";
+import CollegeDetails from "./Pages/CollegeDetails";
 
 export const AllContext = createContext({
   Navbar: {},
@@ -27,6 +28,12 @@ function App() {
     navigate(path);
   };
 
+  const handleItemClick = (elementType, elementId) => {
+    const path = `/${elementType}${elementId ? `/${elementId}` : ""}`;
+    navigate(path);
+    console.log(path);
+  };
+
   const {
     menuItems,
     studyFieldItems,
@@ -35,6 +42,7 @@ function App() {
     socialLinks,
     informationLinks,
     allCourses,
+    collegeDetails,
   } = data;
   const [degreeData] = useUniqueDataFilter(allCourses, "degree");
   const [affiliationData] = useUniqueDataFilter(allCourses, "affiliation");
@@ -89,6 +97,8 @@ function App() {
           collegeAffiliatedFilter,
           collegeAddressFilter,
           collegeCoursesFilter,
+          handleItemClick,
+          collegeDetails,
         },
         Courses: {
           images,
@@ -102,6 +112,7 @@ function App() {
           setDegreeFilter,
           studyFieldFilter,
           setStudyFieldFilter,
+          handleItemClick,
         },
         CourseInquiry: {
           advertisements,
@@ -119,6 +130,7 @@ function App() {
           <Route path="/colleges" element={<Colleges />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/course-inquiry" element={<CourseInquiry />} />
+          <Route path="/colleges/:collegeId" element={<CollegeDetails />} />
         </Routes>
         <Footer />
       </Suspense>

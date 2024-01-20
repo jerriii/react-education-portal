@@ -34,7 +34,7 @@ const InquiryForm = ({ customFormClass, sendChildData }) => {
       }`}
       onSubmit={(e) => handleSubmit(e)}
     >
-      <div className="flex flex-row gap-4">
+      <div className="flex flex-col md:flex-row gap-4">
         <Input
           type="text"
           name="firstName"
@@ -63,7 +63,7 @@ const InquiryForm = ({ customFormClass, sendChildData }) => {
       >
         Email Address *
       </Input>
-      <div className="flex flex-row gap-4">
+      <div className="flex flex-col md:flex-row gap-4">
         <Input
           type="text"
           name="country"

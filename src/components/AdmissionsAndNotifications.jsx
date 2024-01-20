@@ -35,8 +35,9 @@ const AdmissionsAndNotifications = () => {
           key={featuredItems.length}
           className="grid grid-cols-1 gap-2 sm:grid-cols-1 xl:grid-cols-2 w-full"
         >
-          {featuredItems.map((items, index) =>
-            viewMore ? (
+          {featuredItems
+            .slice(0, viewMore ? featuredItems.length : itemsToShow)
+            .map((items, index) => (
               <Link to={items.href} key={index} state={items}>
                 <div
                   className="featured-admission-card flex flex-row items-center break-words gap-x-4 xl:gap-x-2 border p-2 shadow-md rounded-lg"
@@ -52,29 +53,8 @@ const AdmissionsAndNotifications = () => {
                     <p>{items.description}</p>
                   </div>
                 </div>
-
-                {/* <div onClick={()=> handleClick('./about', items)}>
-
-              </div> */}
               </Link>
-            ) : (
-              index < itemsToShow && (
-                <Link to={items.href} key={index}>
-                  <div className="featured-admission-card flex flex-row items-center break-words gap-x-4 xl:gap-x-2 border p-2 shadow-md rounded-lg">
-                    <img
-                      src={images.admissionslogo}
-                      alt={items.id}
-                      className="h-24"
-                    />
-                    <div className="featured-admission-details">
-                      <h1 className="font-bold text-xl">{items.name}</h1>
-                      <p>{items.description}</p>
-                    </div>
-                  </div>
-                </Link>
-              )
-            )
-          )}
+            ))}
         </main>
 
         {!viewMore ? (
@@ -99,7 +79,7 @@ const AdmissionsAndNotifications = () => {
             >
               <img src={images.admissionslogo} alt={index} className="h-12" />
               <h1 className="m-0 break-words w-96 font-semibold">
-                Kathmandu University School of Education (KUSoEd)
+                {items.name}
               </h1>
             </div>
           ))}

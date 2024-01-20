@@ -20,6 +20,7 @@ const CoursesResults = () => {
     setAffiliationFilter,
     setDegreeFilter,
     setStudyFieldFilter,
+    handleItemClick,
   } = Courses;
   const [filterIsOpen, setFilterIsOpen] = useState(false);
   const [affiliationIsOpen, setAffiliationIsOpen] = useState(false);
@@ -268,8 +269,9 @@ const CoursesResults = () => {
               <div
                 key={course.id}
                 className="w-auto h-auto bg-white flex flex-col items-center text-center"
+                onClick={() => handleItemClick("courses", course.id, course)}
               >
-                <div className="w-28 h-28 absolute bg-white rounded-full flex items-center shadow-lg">
+                <div className="w-28 h-28 absolute bg-white rounded-full flex items-center shadow-lg hover:cursor-pointer">
                   <img
                     src={course.logo}
                     alt="imglogo"

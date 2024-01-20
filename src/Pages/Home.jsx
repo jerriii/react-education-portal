@@ -29,7 +29,7 @@ const Home = () => {
     setAdvertisement(advertisementContent);
   }, [advertisements]);
 
-  console.log(advertisement);
+  // console.log(advertisement);
   return (
     <Container customClassName={"flex flex-col"}>
       <AdvertisementSection data={advertisement} />

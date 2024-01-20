@@ -50,7 +50,7 @@ const CollegeSearchGuide = () => {
           zetterijwezen. <br />
           Lorem Ipsum is de standaard proeftekst in deze bedrijfstak sinds.
         </div>
-        <Button>Sign Up</Button>
+        <Button customClass={"!rounded-custom-radius-20px"}>Sign Up</Button>
       </div>
       <div className=" w-full xl:w-[54vw] 2xl:w-[60vw] m-auto xl:m-0">
         <AliceCarousel

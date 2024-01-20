@@ -162,7 +162,7 @@ const MainNavigation = () => {
               alt="search icon"
             />
           </span>
-          <Button>Login</Button>
+          <Button customClass={"!rounded-custom-radius-10px"}>Login</Button>
         </div>
       </div>
       <div

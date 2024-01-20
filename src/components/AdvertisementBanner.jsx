@@ -5,7 +5,7 @@ import Banner from "./Banner";
 
 const AdvertisementBanner = () => {
   const { Navbar } = useContext(AllContext);
-  const images = Navbar.images;
+  const { images } = Navbar;
   const advertisement = [
     {
       name: "banner1",

@@ -33,15 +33,14 @@ const AdmissionFairs = () => {
       </div>
       <div className="admission-fair w-full flex flex-col gap-2">
         <h1 className="mx-auto font-semibold text-xl">Admission Fair</h1>
-        {/* <div className="admission-cards flex flex-row flex-wrap gap-4 justify-center"> */}
         <div className="admission-cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {collegeDatas.map((data, index) =>
             viewMore ? (
               <div key={data.id} className="rounded-md border shadow-lg w-auto">
                 <img
-                  src={data.college_images}
+                  src={data.college_heroimage}
                   alt={data.name}
-                  className="w-full"
+                  className="w-full max-h-40"
                 />
                 <div className="px-4">
                   <h1>{data.name}</h1>
@@ -57,9 +56,9 @@ const AdmissionFairs = () => {
                   className="rounded-md border shadow-lg w-auto"
                 >
                   <img
-                    src={data.college_images}
+                    src={data.college_heroimage}
                     alt={data.name}
-                    className="w-full"
+                    className="w-full max-h-40"
                   />
                   <div className="px-4">
                     <h1>{data.name}</h1>

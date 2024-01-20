@@ -14,7 +14,8 @@ import collegeimage1 from "./collegeimage1.png";
 import herosectionimage from "./help them finding right courses.png";
 import herosectionimagecollege from "./help them finding right college.png";
 import tribhuvanuniversitylogo from "./tribhuvan-university-logo.png";
-
+import heroImage from "../img/heroimage.png";
+import book from "../img/book.png";
 export default {
   admissionslogo,
   advertisementBanner,
@@ -32,4 +33,6 @@ export default {
   herosectionimage,
   herosectionimagecollege,
   tribhuvanuniversitylogo,
+  heroImage,
+  book,
 };

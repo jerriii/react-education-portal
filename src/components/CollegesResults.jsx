@@ -23,6 +23,7 @@ const CollegesResults = () => {
     setCollegeAffiliatedFilter,
     setCollegeAddressFilter,
     setCollegeCoursesFilter,
+    handleItemClick,
   } = Colleges;
 
   const [filterIsOpen, setFilterIsOpen] = useState(false);
@@ -194,7 +195,7 @@ const CollegesResults = () => {
         </div>
 
         {filterIsOpen && (
-          <section className="lg:hidden flex flex-col absolute z-10 bg-white mt-16 right-4 sm:right-20 p-4 shadow-lg rounded-lg">
+          <section className="lg:hidden flex flex-col absolute z-10 bg-white mt-16 right-2 sm:right-20 p-3 sm:p-4 shadow-lg rounded-lg md:text-2xl">
             <>
               <div
                 onClick={() => handleContentVisibility("affiliation")}
@@ -289,16 +290,19 @@ const CollegesResults = () => {
               <div
                 key={college.id}
                 className="w-auto h-auto bg-white flex flex-col items-center text-center"
+                onClick={() => handleItemClick("colleges", college.id)}
               >
-                <div className="w-28 h-28 absolute bg-white flex items-center shadow-lg">
+                <div
+                  className="w-28 h-28 absolute bg-white flex items-center shadow-lg hover:cursor-pointer"
+                >
                   <img
-                    src={college.college_images}
+                    src={college.college_logo}
                     alt="imglogo"
-                    className="w-28 h-28"
+                    className="w-28 h-28 hover:cursor-pointer"
                   />
                 </div>
                 <div className="bg-[#D9D9D9] px-4 py-14 md:pb-4 md:pt-10 rounded-lg mt-20 h-full w-full group hover:cursor-pointer shadow-md">
-                  <h1 className="font-bold">{college.title}</h1>
+                  <h1 className="font-bold">{college.name}</h1>
                   <p>Affiliation: {college.affiliation}</p>
                   <p>Duration: {college.duration} months</p>
                 </div>

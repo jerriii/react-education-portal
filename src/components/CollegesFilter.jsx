@@ -58,6 +58,7 @@ const CollegesFilter = () => {
                     value={data}
                     id={`checkbox_${i}_${data}`}
                     onChange={(e) => handleFilter(e, setCollegeAddressFilter)}
+                    className="hover:cursor-pointer"
                   />{" "}
                   <label
                     htmlFor={`checkbox_${i}_${data}`}
@@ -81,6 +82,7 @@ const CollegesFilter = () => {
                     value={data}
                     id={`checkbox_${i}_${data}`}
                     onChange={(e) => handleFilter(e, setCollegeCoursesFilter)}
+                    className="hover:cursor-pointer"
                   />{" "}
                   <label
                     htmlFor={`checkbox_${i}_${data}`}
@@ -103,11 +105,7 @@ const CollegesFilter = () => {
             key={index}
             className="flex flex-row bg-white px-4 py-2 rounded-lg items-center gap-3 hover:cursor-pointer"
           >
-            <img
-              src={college.college_images}
-              alt={index}
-              className="w-20 h-20"
-            />
+            <img src={college.college_logo} alt={index} className="w-20 h-20" />
             <article>
               <h1 className="font-semibold">{college.name}</h1>
               <p>{college.affiliation}</p>
