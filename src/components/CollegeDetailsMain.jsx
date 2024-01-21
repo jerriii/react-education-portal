@@ -89,11 +89,6 @@ const CollegeDetailsMain = () => {
               role="button"
               className="flex flex-row flex-nowrap items-center bg-custom-green-color rounded-custom-radius-20px transition-transform duration-300 transform hover:scale-110"
             >
-              {/* <p
-                className={`w-full p-4 text-white font-semibold whitespace-nowrap text-center`}
-              >
-                Apply Now
-              </p> */}
               <span className="px-5 py-4 rounded-custom-radius-20px bg-[#00D066]">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -113,11 +108,6 @@ const CollegeDetailsMain = () => {
               role="button"
               className="flex flex-row flex-nowrap items-center bg-[#CCCCCC] rounded-custom-radius-20px transition-transform duration-300 transform hover:scale-110"
             >
-              {/* <p
-                className={`w-full p-4 text-custom-green-color font-semibold whitespace-nowrap text-center`}
-              >
-                Download Brochure
-              </p> */}
               <span className="px-5 py-4 rounded-custom-radius-20px bg-[#A5A5A5]">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -220,7 +210,7 @@ const CollegeDetailsMain = () => {
       </section>
       <div className="bg-white px-7 flex flex-col">
         <section className="grid grid-cols-1 xl:grid-cols-2 lg:justify-items-start justify-items-center bg-white pb-3 pt-32 relative gap-custom-18px">
-          <h1 className="absolute top-0 left-0 right-0 pt-custom-50px px-28 pb-32 text-2xl text-center lg:text-start text-white font-bold bg-custom-green-color">
+          <h1 className="absolute top-0 left-0 right-0 pt-custom-50px lg:px-28 px-2 pb-32 text-2xl text-center lg:text-start text-white font-bold bg-custom-green-color">
             Education Programs
           </h1>
           {educationData.slice(0, totalItemsToDisplay).map((items, index) => (
