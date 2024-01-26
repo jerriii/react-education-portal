@@ -129,6 +129,7 @@ function App() {
         Footer: {
           socialLinks,
           informationLinks,
+          handleItemClick,
         },
       }}
     >

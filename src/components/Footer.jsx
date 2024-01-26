@@ -5,11 +5,8 @@ import { AllContext } from "../App";
 
 const Footer = () => {
   const { Navbar, Footer } = useContext(AllContext);
-  const socialLinks = Footer.socialLinks;
-  const navMenu = Navbar.navMenu;
-  const images = Navbar.images;
-  const menuItems = Navbar.menuItems;
-  const informationLinks = Footer.informationLinks;
+  const { socialLinks, informationLinks, handleItemClick } = Footer;
+  const { navMenu, images, menuItems } = Navbar;
   return (
     <div className="bg-[#A5A5A5]">
       <div className="flex flex-col lg:flex-row justify-between px-2 sm:px-20 py-4 text-base xl:gap-20 lg:gap-0">
@@ -42,8 +39,9 @@ const Footer = () => {
               />
               <Button
                 customClass={"!rounded-custom-radius-10px w-fit m-auto sm:!m-0"}
+                onSubmit={() => handleItemClick("sign-in")}
               >
-                Login
+                Sign In
               </Button>
             </div>
           </div>
