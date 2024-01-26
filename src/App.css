@@ -30,13 +30,3 @@
 .custom-scrollbar {
   scrollbar-color: #C1C1C1 #fafafa;
 }
-
-/* #indicator::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -20px;
-  width: 20px;
-  height: 20px;
-  background-color: red;
-} */

@@ -1,5 +1,5 @@
 import Button from "../../utils/Button";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AllContext } from "../../App";
 import data from "../DummyData.json";
@@ -19,11 +19,17 @@ const MainNavigation = () => {
   const { featuredItems } = data;
   const [isOpen, setIsOpen] = useState(false);
   const [viewNotification, setViewNotification] = useState(false);
-  const [activeTab, setActiveTab] = useState(0);
 
+  const [activeTab, setActiveTab] = useState(0);
   const indication = String(70 * activeTab + 8 * activeTab);
 
   const location = useLocation().pathname;
+
+  useEffect(() => {
+    const index = menuItems.findIndex((item) => item.href === location);
+    setActiveTab(navMenu > index ? index : null);
+  }, [menuItems, navMenu, location]);
+
   const handleNotification = () => {
     setViewNotification(!viewNotification);
   };
@@ -38,8 +44,6 @@ const MainNavigation = () => {
   function handleActiveTab(index) {
     setActiveTab(index);
   }
-
-  console.log(activeTab);
 
   return (
     <>
