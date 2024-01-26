@@ -1,5 +1,6 @@
 import admissionslogo from "./admissionslogo.png";
 import advertisementBanner from "./advertisement banner.png";
+import advertisementBanner2 from "./advertisement banner2.png";
 import searchIcon from "./search icon.png";
 import facultyLogo1 from "./faculty logo1.png";
 import nepalMegaCollege from "./Nepal_Mega_College.png";
@@ -19,6 +20,7 @@ import book from "../img/book.png";
 export default {
   admissionslogo,
   advertisementBanner,
+  advertisementBanner2,
   searchIcon,
   facultyLogo1,
   nepalMegaCollege,

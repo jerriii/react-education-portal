@@ -3,19 +3,26 @@ import { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AllContext } from "../../App";
 import data from "../DummyData.json";
+import Icons from "./Icons";
 
 const MainNavigation = () => {
   const { Navbar } = useContext(AllContext);
-  const featuredItems = data.featuredItems;
+  const {
+    menuItems,
+    handleNavbarClick,
+    navMenu,
+    handleDropDown,
+    isDropDown,
+    dropDownMenu,
+    images,
+  } = Navbar;
+  const { featuredItems } = data;
   const [isOpen, setIsOpen] = useState(false);
   const [viewNotification, setViewNotification] = useState(false);
-  const menuItems = Navbar.menuItems;
-  const handleNavbarClick = Navbar.handleNavbarClick;
-  const navMenu = Navbar.navMenu;
-  const handleDropDown = Navbar.handleDropDown;
-  const isDropDown = Navbar.isDropDown;
-  const dropDownMenu = Navbar.dropDownMenu;
-  const images = Navbar.images;
+  const [activeTab, setActiveTab] = useState(0);
+
+  const indication = String(70 * activeTab + 8 * activeTab);
+
   const location = useLocation().pathname;
   const handleNotification = () => {
     setViewNotification(!viewNotification);
@@ -27,16 +34,26 @@ const MainNavigation = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  function handleActiveTab(index) {
+    setActiveTab(index);
+  }
+
+  console.log(activeTab);
+
   return (
     <>
       <div
         className={`flex items-center mb-2 p-2 lg:gap-4 sm:p-0 sm:justify-between`}
       >
+        {/* logo */}
         <Link to="/">
           <h1 className=" bg-gradient-to-r from-[#0E0F3B] via-[#083B3F] to-[#007E46]  hidden md:inline-block text-transparent bg-clip-text text-[50px] font-bold tracking-wide">
             NepEduNavigator
           </h1>
         </Link>
+
+        {/* logo mobile */}
         <div className="flex md:hidden mr-auto">
           <Link to="/" className="sm:mr-auto leading-normal">
             <h1 className=" bg-gradient-to-r from-[#0E0F3B] via-[#083B3F] to-[#007E46]  inline-block md:hidden text-transparent bg-clip-text text-10 font-bold tracking-wide">
@@ -46,6 +63,7 @@ const MainNavigation = () => {
         </div>
 
         <div className="flex flex-row gap-2">
+          {/* notifications icon */}
           <div
             className={`visibility lg:hidden ${isOpen ? "hidden" : "visible"}`}
             onClick={handleNotification}
@@ -93,8 +111,12 @@ const MainNavigation = () => {
               </svg>
             )}
           </div>
+
+          {/* notifications */}
           <div
-            className={`lg:hidden ${viewNotification ? "hidden" : "visible"}`}
+            className={`hidden lg:hidden ${
+              viewNotification ? "sm:hidden" : "sm:block"
+            }`}
             onClick={toggleMenu}
           >
             {isOpen ? (
@@ -145,6 +167,7 @@ const MainNavigation = () => {
           </div>
         </div>
 
+        {/* search input */}
         <div
           className={`search hidden lg:inline-flex relative items-center gap-6 w-1/2 `}
         >
@@ -162,13 +185,24 @@ const MainNavigation = () => {
               alt="search icon"
             />
           </span>
-          <Button customClass={"!rounded-custom-radius-10px"}>Login</Button>
+          <Button
+            customClass={`!rounded-custom-radius-10px ${
+              location === "/sign-in"
+                ? "!bg-[#19A948] !transition !ease-linear !duration-200"
+                : ""
+            }`}
+            onSubmit={() => handleNavbarClick("/sign-in")}
+          >
+            Sign&nbsp;In
+          </Button>
         </div>
       </div>
+
+      {/* tablet navmenu */}
       <div
         className={`${
-          isOpen ? "flex" : "hidden"
-        } lg:hidden bg-slate-50 w-full px-8 py-4 flex-col rounded-md z-10`}
+          isOpen ? "sm:flex" : "sm:hidden"
+        } hidden lg:hidden bg-slate-50 w-full px-8 py-4 flex-col rounded-md z-10`}
       >
         <ul className={`gap-4 ${isOpen ? "visible" : "hidden"}`}>
           {menuItems.slice(0, navMenu).map((item, index) => (
@@ -260,6 +294,98 @@ const MainNavigation = () => {
           </li>
         </ul>
       </div>
+
+      {/* mobile navmenu */}
+      <section className="w-full fixed left-0 bottom-0 flex justify-center sm:hidden bg-custom-navbar-black-color rounded-ss-custom-radius-10px rounded-se-custom-radius-10px z-50">
+        <div
+          className={` inline-flex flex-row relative bottom-0 left-0 text-white  h-16 z-10 `}
+        >
+          <ul
+            className={`flex flex-row relative justify-between items-center w-auto gap-2`}
+          >
+            {menuItems.slice(0, navMenu).map((item, index) => (
+              <li key={index} className={`cursor-pointer w-custom-70px`}>
+                <Link
+                  className="flex justify-center items-center relative w-full text-center"
+                  onClick={() => handleActiveTab(index)}
+                  to={item.href}
+                >
+                  <span
+                    className={`icon relative block leading-custom-75px duration-300 ${
+                      activeTab === index ? "-translate-y-9" : ""
+                    }`}
+                  >
+                    {<Icons data={item.logo} />}
+                  </span>
+                </Link>
+              </li>
+            ))}
+
+            <li onClick={handleDropDown} className="w-custom-70px">
+              <>
+                <button
+                  className="dropbtn flex items-center relative m-auto"
+                  onClick={handleDropDown}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M12 3C10.9 3 10 3.9 10 5C10 6.1 10.9 7 12 7C13.1 7 14 6.1 14 5C14 3.9 13.1 3 12 3ZM12 17C10.9 17 10 17.9 10 19C10 20.1 10.9 21 12 21C13.1 21 14 20.1 14 19C14 17.9 13.1 17 12 17ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"
+                      fill="white"
+                    />
+                  </svg>
+                </button>
+
+                {/* mobile more menu  */}
+                {isDropDown && (
+                  <ul
+                    className={`absolute right-0 bottom-14 bg-custom-navbar-black-color transition ease-linear duration-200`}
+                  >
+                    {menuItems
+                      .slice(navMenu, navMenu + dropDownMenu)
+                      .map((item, index) => (
+                        <li
+                          key={index}
+                          className={`text-[var(--primary-700, #0E0F3B)] px-4 ${
+                            location === item.href
+                              ? " text-[#19A948] transition ease-linear duration-200"
+                              : ""
+                          }`}
+                        >
+                          <Link
+                            to={item.href}
+                            onClick={() => {
+                              handleNavbarClick(`${item.href} `);
+                              setActiveTab(null);
+                            }}
+                          >
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                  </ul>
+                )}
+              </>
+            </li>
+            <div
+              className={`indicator ${
+                activeTab ?? "hidden"
+              } absolute w-custom-70px h-custom-70px border-8 border-white rounded-full -top-9 -z-10 bg-custom-green-color ease-in-out duration-500`}
+              style={{
+                left: `${indication}px`,
+                transform: `translateX(calc(70*${activeTab}))`,
+              }}
+            >
+              {" "}
+            </div>
+          </ul>
+        </div>
+      </section>
       {viewNotification && (
         <div className="absolute z-10 flex flex-col right-2 sm:right-20 bg-[#D9D9D9] overflow-scroll h-[35vh] p-2 lg:hidden rounded-md w-fit">
           {featuredItems.map((items, index) => (

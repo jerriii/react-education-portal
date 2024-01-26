@@ -7,6 +7,9 @@ import data from "../src/components/DummyData.json";
 import LoadingSpinner from "./components/LoadingSpinner";
 import CourseInquiry from "./Pages/CourseInquiry";
 import CollegeDetails from "./Pages/CollegeDetails";
+import CoursesDetails from "./Pages/CoursesDetails";
+import SignIn from "./Pages/SignIn";
+import useDynamicDisplay from "./CustomHooks/useDynamicDisplay";
 
 export const AllContext = createContext({
   Navbar: {},
@@ -31,7 +34,6 @@ function App() {
   const handleItemClick = (elementType, elementId) => {
     const path = `/${elementType}${elementId ? `/${elementId}` : ""}`;
     navigate(path);
-    console.log(path);
   };
 
   const {
@@ -54,7 +56,13 @@ function App() {
   const [collegeAddressData] = useUniqueDataFilter(collegeDatas, "address");
   const [collegeCoursesData] = useUniqueDataFilter(collegeDatas, "courses");
 
-  const navMenu = Math.min(menuItems.length, 4);
+  const navMenu = useDynamicDisplay({
+    mobile: 3,
+    tablet: 4,
+    desktopsm: 4,
+    desktopmd: 4,
+    other: 4,
+  });
   const dropDownMenu = Math.max(menuItems.length - navMenu, 0);
   const [isDropDown, setIsDropDown] = useState(false);
   const [affiliationFilter, setAffiliationFilter] = useState([]);
@@ -106,6 +114,7 @@ function App() {
           affiliationData,
           degreeData,
           studyFieldData,
+          advertisements,
           affiliationFilter,
           setAffiliationFilter,
           degreeFilter,
@@ -131,6 +140,8 @@ function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/course-inquiry" element={<CourseInquiry />} />
           <Route path="/colleges/:collegeId" element={<CollegeDetails />} />
+          <Route path="/courses/:courseId" element={<CoursesDetails />} />
+          <Route path="/sign-in" element={<SignIn />} />
         </Routes>
         <Footer />
       </Suspense>

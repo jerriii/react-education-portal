@@ -1,9 +1,8 @@
 import { useState } from "react";
 import Button from "../utils/Button";
+import PropTypes from "prop-types";
 
-const Comments = () => {
-  const limit = 500;
-
+const Comments = ({ limit }) => {
   const [totalCharacter, setTotalCharacter] = useState(0);
 
   function handleLetterCount(event) {
@@ -11,7 +10,7 @@ const Comments = () => {
   }
 
   return (
-    <div className="flex flex-col p-7 bg-white">
+    <div className="flex flex-col sm:p-7 bg-transparent">
       <h1 className="py-6 text-2xl font-semibold border-b border-custom-border-color">
         Comments
       </h1>
@@ -19,7 +18,7 @@ const Comments = () => {
         name="comments"
         id="comments"
         rows={5}
-        className="w-full border p-8 placeholder:font-semibold mt-3 resize-none"
+        className="w-full border p-2 sm:p-8 placeholder:font-semibold mt-3 resize-none"
         maxLength={limit}
         placeholder="Write your comment here...."
         onChange={(e) => handleLetterCount(e)}
@@ -34,6 +33,10 @@ const Comments = () => {
       </Button>
     </div>
   );
+};
+
+Comments.propTypes = {
+  limit: PropTypes.number.isRequired,
 };
 
 export default Comments;

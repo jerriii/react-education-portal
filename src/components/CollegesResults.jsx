@@ -132,7 +132,7 @@ const CollegesResults = () => {
 
   return (
     <section className="flex flex-col bg-white rounded-lg px-5 w-full">
-      <section role="feed" className="flex flex-col gap-4">
+      <section role="feed" className="flex flex-col gap-4 relative">
         <div className="flex flex-row justify-between lg:justify-start border-b items-center">
           <h1 className="text-2xl font-semibold py-3">Search Results:</h1>
           {filterIsOpen ? (
@@ -195,7 +195,7 @@ const CollegesResults = () => {
         </div>
 
         {filterIsOpen && (
-          <section className="lg:hidden flex flex-col absolute z-10 bg-white mt-16 right-2 sm:right-20 p-3 sm:p-4 shadow-lg rounded-lg md:text-2xl">
+          <section className="lg:hidden flex flex-col absolute z-10 bg-white mt-16 top-0 left-0 right-0 sm:right-20 p-3 sm:p-4 shadow-lg rounded-lg md:text-2xl">
             <>
               <div
                 onClick={() => handleContentVisibility("affiliation")}
@@ -292,9 +292,7 @@ const CollegesResults = () => {
                 className="w-auto h-auto bg-white flex flex-col items-center text-center"
                 onClick={() => handleItemClick("colleges", college.id)}
               >
-                <div
-                  className="w-28 h-28 absolute bg-white flex items-center shadow-lg hover:cursor-pointer"
-                >
+                <div className="w-28 h-28 absolute bg-white flex items-center shadow-lg hover:cursor-pointer">
                   <img
                     src={college.college_logo}
                     alt="imglogo"

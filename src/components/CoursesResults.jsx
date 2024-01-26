@@ -75,6 +75,7 @@ const CoursesResults = () => {
   function handleChildData(data) {
     setChildData(data);
   }
+
   const [firstPostIndex, lastPostIndex, pagination] = usePagination({
     totalPosts: filteredCourses.length,
     postsPerPage: totalContentShown,
@@ -119,7 +120,7 @@ const CoursesResults = () => {
 
   return (
     <section className="flex flex-col bg-white rounded-lg px-5 w-full">
-      <section role="feed" className="flex flex-col gap-4">
+      <section role="feed" className="flex flex-col gap-4 relative">
         <div className="flex flex-row justify-between lg:justify-start border-b items-center">
           <h1 className="text-2xl font-semibold py-3">Search Results:</h1>
           {filterIsOpen ? (
@@ -182,7 +183,7 @@ const CoursesResults = () => {
         </div>
 
         {filterIsOpen && (
-          <section className="lg:hidden flex flex-col absolute z-10 bg-white mt-16 right-4 sm:right-20 p-4 shadow-lg rounded-lg">
+          <section className="lg:hidden flex flex-col absolute z-10 bg-white mt-16 sm:right-20 p-4 shadow-lg rounded-lg top-0 left-0 right-0">
             <>
               <div
                 onClick={() => handleContentVisibility("affiliation")}
